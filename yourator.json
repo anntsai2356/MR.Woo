@@ -1,0 +1,1305 @@
+{
+    "total": 112,
+    "jobs": [
+        {
+            "id": 26807,
+            "name": "Technical Head/Manager",
+            "path": "/companies/upstartdna/jobs/26807",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 293,
+                    "name": "ReactJS",
+                    "jobs_count": 654,
+                    "created_at": "2020-10-07T14:48:46.000+08:00",
+                    "updated_at": "2020-10-07T14:48:46.000+08:00"
+                },
+                {
+                    "id": 30,
+                    "name": "Git",
+                    "jobs_count": 313,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 32,
+                    "name": "Ruby",
+                    "jobs_count": 173,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 748,
+                    "name": "React",
+                    "jobs_count": 48,
+                    "created_at": "2020-12-01T18:02:55.000+08:00",
+                    "updated_at": "2020-12-01T18:02:55.000+08:00"
+                },
+                {
+                    "id": 378,
+                    "name": "Ruby on rails",
+                    "jobs_count": 25,
+                    "created_at": "2020-10-10T14:53:04.000+08:00",
+                    "updated_at": "2020-10-10T14:53:04.000+08:00"
+                },
+                {
+                    "id": 3251,
+                    "name": "technical manager",
+                    "jobs_count": 3,
+                    "created_at": "2022-09-30T14:51:36.000+08:00",
+                    "updated_at": "2022-09-30T14:51:36.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": true,
+            "follow": false,
+            "salary": "NT$ 1,500,000 - 2,000,000 (年薪)",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 885,
+            "company": {
+                "path": "/companies/upstartdna",
+                "brand": "Affiliates.One 聯盟網",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/021/medium/cec35644ed3dbb4631fd6c55c0c97e4829150b16.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_none",
+            "remote_interview_description": null,
+            "is_active": true
+        },
+        {
+            "id": 26602,
+            "name": "Full Stack Engineer",
+            "path": "/companies/Highstreet/jobs/26602",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 616,
+                    "name": "frontend",
+                    "jobs_count": 142,
+                    "created_at": "2020-11-04T14:45:59.000+08:00",
+                    "updated_at": "2020-11-04T14:45:59.000+08:00"
+                },
+                {
+                    "id": 639,
+                    "name": "backend",
+                    "jobs_count": 80,
+                    "created_at": "2020-11-09T14:09:16.000+08:00",
+                    "updated_at": "2020-11-09T14:09:16.000+08:00"
+                },
+                {
+                    "id": 1102,
+                    "name": "FULL STACK",
+                    "jobs_count": 41,
+                    "created_at": "2021-01-25T16:09:32.000+08:00",
+                    "updated_at": "2021-01-25T16:09:32.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": true,
+            "follow": false,
+            "salary": "NT$ 1,200,000 - 1,800,000 (年薪)",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 1957,
+            "company": {
+                "path": "/companies/Highstreet",
+                "brand": "Highstreet",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/002/092/medium/527fccecf25be44caf19c27f2cfb9179d4227dad.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_partial",
+            "remote_work_description": "部分遠端工作，一週內有兩天進辦公室開會與brainstorming",
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "第一與第二次面試遠端進行、第三次onsite同時參觀辦公室環境.",
+            "is_active": true
+        },
+        {
+            "id": 28553,
+            "name": "Senior Full Stack Developer (JAVA)",
+            "path": "/companies/meetagile/jobs/28553",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 2413,
+                    "name": "Full-Stack Engineer",
+                    "jobs_count": 7,
+                    "created_at": "2022-02-17T17:39:00.000+08:00",
+                    "updated_at": "2022-02-17T17:39:00.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": true,
+            "follow": false,
+            "salary": "NT$ 840,000 - 1,400,000 (月薪)",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 2073,
+            "company": {
+                "path": "/companies/meetagile",
+                "brand": "捷思科技",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/002/187/medium/0f3ed2fd255d53c2f90bb1e421fe23923df325d3.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_none",
+            "remote_interview_description": null,
+            "is_active": true
+        },
+        {
+            "id": 7404,
+            "name": "Web Full-Stack 全端工程師",
+            "path": "/companies/dentaltw/jobs/7404",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 302,
+                    "name": "HTML/CSS",
+                    "jobs_count": 1202,
+                    "created_at": "2020-10-07T14:48:46.000+08:00",
+                    "updated_at": "2020-10-07T14:48:46.000+08:00"
+                },
+                {
+                    "id": 124,
+                    "name": "資訊平台",
+                    "jobs_count": 970,
+                    "created_at": "2020-10-07T14:48:45.000+08:00",
+                    "updated_at": "2020-10-07T14:48:45.000+08:00"
+                },
+                {
+                    "id": 67,
+                    "name": "SQL",
+                    "jobs_count": 959,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 61,
+                    "name": "Node.js",
+                    "jobs_count": 760,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 293,
+                    "name": "ReactJS",
+                    "jobs_count": 654,
+                    "created_at": "2020-10-07T14:48:46.000+08:00",
+                    "updated_at": "2020-10-07T14:48:46.000+08:00"
+                },
+                {
+                    "id": 69,
+                    "name": "健康醫療",
+                    "jobs_count": 235,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": true,
+            "follow": false,
+            "salary": "NT$ 40,000 - 95,000 (月薪)",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 916,
+            "company": {
+                "path": "/companies/dentaltw",
+                "brand": "dentall 台灣牙 e 通",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/054/medium/de6da0140cca718704c8591463377833ba616180.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_partial",
+            "remote_work_description": "可彈型遠端工作",
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "依情況安排遠端面試",
+            "is_active": false
+        },
+        {
+            "id": 26049,
+            "name": "【採線上面談】Full Stack Developer(Web \u0026 Flutter App) 全端工程師",
+            "path": "/companies/TITANSOFT/jobs/26049",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 59,
+                    "name": "APP",
+                    "jobs_count": 1447,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 92,
+                    "name": "軟體開發",
+                    "jobs_count": 1126,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 94,
+                    "name": "程式開發",
+                    "jobs_count": 271,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 84,
+                    "name": "遊戲",
+                    "jobs_count": 126,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 31,
+                    "name": "Scrum",
+                    "jobs_count": 69,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 734,
+                    "name": "全端工程師",
+                    "jobs_count": 51,
+                    "created_at": "2020-11-27T14:16:31.000+08:00",
+                    "updated_at": "2020-11-27T14:16:31.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": true,
+            "follow": false,
+            "salary": "NT$ 50,000 - 70,000 (月薪)",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 878,
+            "company": {
+                "path": "/companies/TITANSOFT",
+                "brand": "新加坡商鈦坦科技",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/014/medium/e1d789fbdbeb8d5fa82b4225968939e89dec85cf.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "",
+            "is_active": false
+        },
+        {
+            "id": 27379,
+            "name": "【採線上面談】Data Engineer 資料工程師",
+            "path": "/companies/TITANSOFT/jobs/27379",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": true,
+            "follow": false,
+            "salary": "NT$ 50,000 - 90,000 (月薪)",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 878,
+            "company": {
+                "path": "/companies/TITANSOFT",
+                "brand": "新加坡商鈦坦科技",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/014/medium/e1d789fbdbeb8d5fa82b4225968939e89dec85cf.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_none",
+            "remote_interview_description": null,
+            "is_active": false
+        },
+        {
+            "id": 28064,
+            "name": "顧問師/高級顧問師/副理 (RPA技術顧問)-317317",
+            "path": "/companies/KPMG/jobs/28064",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": true,
+            "follow": false,
+            "salary": "NT$ 40,000 - 70,000 (月薪)",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 2008,
+            "company": {
+                "path": "/companies/KPMG",
+                "brand": "安侯建業 KPMG",
+                "banner": null,
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_partial",
+            "remote_work_description": "",
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "",
+            "is_active": true
+        },
+        {
+            "id": 27974,
+            "name": "【B07】客服系統專案工程師",
+            "path": "/companies/CHT/jobs/27974",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 429,
+                    "name": "CRM",
+                    "jobs_count": 40,
+                    "created_at": "2020-10-15T18:26:37.000+08:00",
+                    "updated_at": "2020-10-15T18:26:37.000+08:00"
+                },
+                {
+                    "id": 3619,
+                    "name": "CTI",
+                    "jobs_count": 1,
+                    "created_at": "2023-01-10T10:28:21.000+08:00",
+                    "updated_at": "2023-01-10T10:28:21.000+08:00"
+                },
+                {
+                    "id": 3620,
+                    "name": "IVR",
+                    "jobs_count": 1,
+                    "created_at": "2023-01-10T10:28:21.000+08:00",
+                    "updated_at": "2023-01-10T10:28:21.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": false,
+            "follow": false,
+            "salary": "面議（經常性薪資達4萬元）",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 1726,
+            "company": {
+                "path": "/companies/CHT",
+                "brand": "中華電信",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/867/medium/afa0e23929c283915b2b0cce1fcf88b2a99e1d42.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "依據用人單位主管需求進行遠端或實體面試",
+            "is_active": true
+        },
+        {
+            "id": 27976,
+            "name": "【B08】客服系統應用規畫、建置及維運工程師",
+            "path": "/companies/CHT/jobs/27976",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 24,
+                    "name": "Java",
+                    "jobs_count": 922,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 330,
+                    "name": "MySQL",
+                    "jobs_count": 283,
+                    "created_at": "2020-10-07T14:48:47.000+08:00",
+                    "updated_at": "2020-10-07T14:48:47.000+08:00"
+                },
+                {
+                    "id": 309,
+                    "name": ".Net",
+                    "jobs_count": 199,
+                    "created_at": "2020-10-07T14:48:46.000+08:00",
+                    "updated_at": "2020-10-07T14:48:46.000+08:00"
+                },
+                {
+                    "id": 685,
+                    "name": "Oracle",
+                    "jobs_count": 27,
+                    "created_at": "2020-11-18T17:05:19.000+08:00",
+                    "updated_at": "2020-11-18T17:05:19.000+08:00"
+                },
+                {
+                    "id": 1242,
+                    "name": "SQL SERVER",
+                    "jobs_count": 6,
+                    "created_at": "2021-03-12T08:44:10.000+08:00",
+                    "updated_at": "2021-03-12T08:44:10.000+08:00"
+                },
+                {
+                    "id": 3621,
+                    "name": "客服系統",
+                    "jobs_count": 1,
+                    "created_at": "2023-01-10T10:41:09.000+08:00",
+                    "updated_at": "2023-01-10T10:41:09.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": false,
+            "follow": false,
+            "salary": "面議（經常性薪資達4萬元）",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 1726,
+            "company": {
+                "path": "/companies/CHT",
+                "brand": "中華電信",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/867/medium/afa0e23929c283915b2b0cce1fcf88b2a99e1d42.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "依據用人單位主管需求進行遠端或實體面試",
+            "is_active": true
+        },
+        {
+            "id": 27949,
+            "name": "【IT-02】企業客戶技術服務",
+            "path": "/companies/CHT/jobs/27949",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 42,
+                    "name": "AWS",
+                    "jobs_count": 281,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 328,
+                    "name": "GCP",
+                    "jobs_count": 122,
+                    "created_at": "2020-10-07T14:48:47.000+08:00",
+                    "updated_at": "2020-10-07T14:48:47.000+08:00"
+                },
+                {
+                    "id": 515,
+                    "name": "Azure",
+                    "jobs_count": 23,
+                    "created_at": "2020-10-22T13:32:04.000+08:00",
+                    "updated_at": "2020-10-22T13:32:04.000+08:00"
+                },
+                {
+                    "id": 595,
+                    "name": "雲端架構師",
+                    "jobs_count": 16,
+                    "created_at": "2020-10-30T14:16:19.000+08:00",
+                    "updated_at": "2020-10-30T14:16:19.000+08:00"
+                },
+                {
+                    "id": 1087,
+                    "name": "Machine Learning",
+                    "jobs_count": 7,
+                    "created_at": "2021-01-19T18:47:00.000+08:00",
+                    "updated_at": "2021-01-19T18:47:00.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": false,
+            "follow": false,
+            "salary": "面議（經常性薪資達4萬元）",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 1726,
+            "company": {
+                "path": "/companies/CHT",
+                "brand": "中華電信",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/867/medium/afa0e23929c283915b2b0cce1fcf88b2a99e1d42.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "依據用人單位主管需求進行遠端or實體面試",
+            "is_active": true
+        },
+        {
+            "id": 27950,
+            "name": "【IT-03】資料中心監控平台系統規劃、設計與開發",
+            "path": "/companies/CHT/jobs/27950",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 215,
+                    "name": "人工智慧",
+                    "jobs_count": 46,
+                    "created_at": "2020-10-07T14:48:46.000+08:00",
+                    "updated_at": "2020-10-07T14:48:46.000+08:00"
+                },
+                {
+                    "id": 515,
+                    "name": "Azure",
+                    "jobs_count": 23,
+                    "created_at": "2020-10-22T13:32:04.000+08:00",
+                    "updated_at": "2020-10-22T13:32:04.000+08:00"
+                },
+                {
+                    "id": 3593,
+                    "name": "雲端技術",
+                    "jobs_count": 6,
+                    "created_at": "2023-01-07T10:52:58.000+08:00",
+                    "updated_at": "2023-01-07T10:52:58.000+08:00"
+                },
+                {
+                    "id": 3607,
+                    "name": "資料中心",
+                    "jobs_count": 2,
+                    "created_at": "2023-01-09T22:54:28.000+08:00",
+                    "updated_at": "2023-01-09T22:54:28.000+08:00"
+                },
+                {
+                    "id": 3608,
+                    "name": "監控平台",
+                    "jobs_count": 1,
+                    "created_at": "2023-01-09T22:54:28.000+08:00",
+                    "updated_at": "2023-01-09T22:54:28.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": false,
+            "follow": false,
+            "salary": "面議（經常性薪資達4萬元）",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 1726,
+            "company": {
+                "path": "/companies/CHT",
+                "brand": "中華電信",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/867/medium/afa0e23929c283915b2b0cce1fcf88b2a99e1d42.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "依據用人單位主管需求進行遠端or實體面試",
+            "is_active": true
+        },
+        {
+            "id": 27952,
+            "name": "【IT-04】資料中心機房工程、企業私雲暨ICT 客製化專案系統之規劃、建置及專案管理",
+            "path": "/companies/CHT/jobs/27952",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 202,
+                    "name": "雲端運用",
+                    "jobs_count": 46,
+                    "created_at": "2020-10-07T14:48:46.000+08:00",
+                    "updated_at": "2020-10-07T14:48:46.000+08:00"
+                },
+                {
+                    "id": 716,
+                    "name": "系統架構師",
+                    "jobs_count": 10,
+                    "created_at": "2020-11-19T20:55:21.000+08:00",
+                    "updated_at": "2020-11-19T20:55:21.000+08:00"
+                },
+                {
+                    "id": 3074,
+                    "name": "解決方案導入",
+                    "jobs_count": 5,
+                    "created_at": "2022-07-26T14:47:44.000+08:00",
+                    "updated_at": "2022-07-26T14:47:44.000+08:00"
+                },
+                {
+                    "id": 1444,
+                    "name": "專案規劃執行╱範圍管理",
+                    "jobs_count": 4,
+                    "created_at": "2021-04-23T18:05:39.000+08:00",
+                    "updated_at": "2021-04-23T18:05:39.000+08:00"
+                },
+                {
+                    "id": 3607,
+                    "name": "資料中心",
+                    "jobs_count": 2,
+                    "created_at": "2023-01-09T22:54:28.000+08:00",
+                    "updated_at": "2023-01-09T22:54:28.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": false,
+            "follow": false,
+            "salary": "面議（經常性薪資達4萬元）",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 1726,
+            "company": {
+                "path": "/companies/CHT",
+                "brand": "中華電信",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/867/medium/afa0e23929c283915b2b0cce1fcf88b2a99e1d42.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "依據用人單位主管需求進行遠端or實體面試",
+            "is_active": true
+        },
+        {
+            "id": 27954,
+            "name": "【IT-06】系統開發工程師",
+            "path": "/companies/CHT/jobs/27954",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 38,
+                    "name": "JavaScript",
+                    "jobs_count": 1611,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 24,
+                    "name": "Java",
+                    "jobs_count": 922,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 310,
+                    "name": "C#",
+                    "jobs_count": 368,
+                    "created_at": "2020-10-07T14:48:46.000+08:00",
+                    "updated_at": "2020-10-07T14:48:46.000+08:00"
+                },
+                {
+                    "id": 30,
+                    "name": "Git",
+                    "jobs_count": 313,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 908,
+                    "name": "ASP.NET",
+                    "jobs_count": 23,
+                    "created_at": "2020-12-20T14:36:01.000+08:00",
+                    "updated_at": "2020-12-20T14:36:01.000+08:00"
+                },
+                {
+                    "id": 1917,
+                    "name": "springboot",
+                    "jobs_count": 20,
+                    "created_at": "2021-09-27T23:03:11.000+08:00",
+                    "updated_at": "2021-09-27T23:03:11.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": false,
+            "follow": false,
+            "salary": "面議（經常性薪資達4萬元）",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 1726,
+            "company": {
+                "path": "/companies/CHT",
+                "brand": "中華電信",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/867/medium/afa0e23929c283915b2b0cce1fcf88b2a99e1d42.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "依據用人單位主管需求進行遠端or實體面試",
+            "is_active": true
+        },
+        {
+            "id": 27956,
+            "name": "【IT-08】資安顧問與架構管理師",
+            "path": "/companies/CHT/jobs/27956",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 51,
+                    "name": "專案管理",
+                    "jobs_count": 275,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 235,
+                    "name": "資安",
+                    "jobs_count": 120,
+                    "created_at": "2020-10-07T14:48:46.000+08:00",
+                    "updated_at": "2020-10-07T14:48:46.000+08:00"
+                },
+                {
+                    "id": 716,
+                    "name": "系統架構師",
+                    "jobs_count": 10,
+                    "created_at": "2020-11-19T20:55:21.000+08:00",
+                    "updated_at": "2020-11-19T20:55:21.000+08:00"
+                },
+                {
+                    "id": 2754,
+                    "name": "資安顧問",
+                    "jobs_count": 4,
+                    "created_at": "2022-05-20T10:26:01.000+08:00",
+                    "updated_at": "2022-05-20T10:26:01.000+08:00"
+                },
+                {
+                    "id": 3073,
+                    "name": "資安解決方案",
+                    "jobs_count": 3,
+                    "created_at": "2022-07-26T14:47:44.000+08:00",
+                    "updated_at": "2022-07-26T14:47:44.000+08:00"
+                },
+                {
+                    "id": 3612,
+                    "name": "個資管理顧問",
+                    "jobs_count": 1,
+                    "created_at": "2023-01-10T06:32:11.000+08:00",
+                    "updated_at": "2023-01-10T06:32:11.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": false,
+            "follow": false,
+            "salary": "面議（經常性薪資達4萬元）",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 1726,
+            "company": {
+                "path": "/companies/CHT",
+                "brand": "中華電信",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/867/medium/afa0e23929c283915b2b0cce1fcf88b2a99e1d42.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "依據用人單位主管需求進行遠端or實體面試",
+            "is_active": true
+        },
+        {
+            "id": 27957,
+            "name": "【IT-09】系統開發工程師",
+            "path": "/companies/CHT/jobs/27957",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 38,
+                    "name": "JavaScript",
+                    "jobs_count": 1611,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 67,
+                    "name": "SQL",
+                    "jobs_count": 959,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 24,
+                    "name": "Java",
+                    "jobs_count": 922,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 310,
+                    "name": "C#",
+                    "jobs_count": 368,
+                    "created_at": "2020-10-07T14:48:46.000+08:00",
+                    "updated_at": "2020-10-07T14:48:46.000+08:00"
+                },
+                {
+                    "id": 908,
+                    "name": "ASP.NET",
+                    "jobs_count": 23,
+                    "created_at": "2020-12-20T14:36:01.000+08:00",
+                    "updated_at": "2020-12-20T14:36:01.000+08:00"
+                },
+                {
+                    "id": 1917,
+                    "name": "springboot",
+                    "jobs_count": 20,
+                    "created_at": "2021-09-27T23:03:11.000+08:00",
+                    "updated_at": "2021-09-27T23:03:11.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": false,
+            "follow": false,
+            "salary": "面議（經常性薪資達4萬元）",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 1726,
+            "company": {
+                "path": "/companies/CHT",
+                "brand": "中華電信",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/867/medium/afa0e23929c283915b2b0cce1fcf88b2a99e1d42.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "依據用人單位主管需求進行遠端or實體面試",
+            "is_active": true
+        },
+        {
+            "id": 27959,
+            "name": "【IT-11】商務系統開發工程師",
+            "path": "/companies/CHT/jobs/27959",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 129,
+                    "name": "AI",
+                    "jobs_count": 1086,
+                    "created_at": "2020-10-07T14:48:45.000+08:00",
+                    "updated_at": "2020-10-07T14:48:45.000+08:00"
+                },
+                {
+                    "id": 23,
+                    "name": "Android",
+                    "jobs_count": 534,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 320,
+                    "name": "Kotlin",
+                    "jobs_count": 162,
+                    "created_at": "2020-10-07T14:48:46.000+08:00",
+                    "updated_at": "2020-10-07T14:48:46.000+08:00"
+                },
+                {
+                    "id": 2517,
+                    "name": "元宇宙",
+                    "jobs_count": 14,
+                    "created_at": "2022-03-11T13:30:58.000+08:00",
+                    "updated_at": "2022-03-11T13:30:58.000+08:00"
+                },
+                {
+                    "id": 1789,
+                    "name": "XR",
+                    "jobs_count": 6,
+                    "created_at": "2021-08-19T19:02:58.000+08:00",
+                    "updated_at": "2021-08-19T19:02:58.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": false,
+            "follow": false,
+            "salary": "面議（經常性薪資達4萬元）",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 1726,
+            "company": {
+                "path": "/companies/CHT",
+                "brand": "中華電信",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/867/medium/afa0e23929c283915b2b0cce1fcf88b2a99e1d42.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "依據用人單位主管需求進行遠端or實體面試",
+            "is_active": true
+        },
+        {
+            "id": 27283,
+            "name": "【採線上面談】ScrumMaster（台北） ",
+            "path": "/companies/TITANSOFT/jobs/27283",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": true,
+            "follow": false,
+            "salary": "NT$ 50,000 - 100,000 (月薪)",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 878,
+            "company": {
+                "path": "/companies/TITANSOFT",
+                "brand": "新加坡商鈦坦科技",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/014/medium/e1d789fbdbeb8d5fa82b4225968939e89dec85cf.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_none",
+            "remote_interview_description": null,
+            "is_active": true
+        },
+        {
+            "id": 27096,
+            "name": "【採線上面談】【112年度研發替代役】Software Engineer／Programmer 軟體工程師(台北)",
+            "path": "/companies/TITANSOFT/jobs/27096",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": true,
+            "follow": false,
+            "salary": "NT$ 50,000 - 75,000 (月薪)",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 878,
+            "company": {
+                "path": "/companies/TITANSOFT",
+                "brand": "新加坡商鈦坦科技",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/014/medium/e1d789fbdbeb8d5fa82b4225968939e89dec85cf.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_none",
+            "remote_interview_description": null,
+            "is_active": true
+        },
+        {
+            "id": 21977,
+            "name": "【採線上面談】Senior Software Engineer / Programmer 資深軟體工程師",
+            "path": "/companies/TITANSOFT/jobs/21977",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": true,
+            "follow": false,
+            "salary": "NT$ 89,000 - 125,000 (月薪)",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 878,
+            "company": {
+                "path": "/companies/TITANSOFT",
+                "brand": "新加坡商鈦坦科技",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/014/medium/e1d789fbdbeb8d5fa82b4225968939e89dec85cf.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_none",
+            "remote_interview_description": null,
+            "is_active": true
+        },
+        {
+            "id": 12378,
+            "name": "【採線上面談】Principal Software Engineer / Programmer - Annual Salary 3M+",
+            "path": "/companies/TITANSOFT/jobs/12378",
+            "category": {
+                "id": 24,
+                "name": "全端工程",
+                "jobs_count": -1270,
+                "job_type": "technical_job",
+                "isco_code": "15-1252.00",
+                "priority": 2,
+                "job_category_group_id": 7,
+                "created_at": "2020-06-09T14:52:17.000+08:00",
+                "updated_at": "2021-02-22T17:04:05.000+08:00",
+                "job_category_code": "24"
+            },
+            "tags": [
+                {
+                    "id": 302,
+                    "name": "HTML/CSS",
+                    "jobs_count": 1202,
+                    "created_at": "2020-10-07T14:48:46.000+08:00",
+                    "updated_at": "2020-10-07T14:48:46.000+08:00"
+                },
+                {
+                    "id": 67,
+                    "name": "SQL",
+                    "jobs_count": 959,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 24,
+                    "name": "Java",
+                    "jobs_count": 922,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 310,
+                    "name": "C#",
+                    "jobs_count": 368,
+                    "created_at": "2020-10-07T14:48:46.000+08:00",
+                    "updated_at": "2020-10-07T14:48:46.000+08:00"
+                },
+                {
+                    "id": 84,
+                    "name": "遊戲",
+                    "jobs_count": 126,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                },
+                {
+                    "id": 31,
+                    "name": "Scrum",
+                    "jobs_count": 69,
+                    "created_at": "2020-10-07T14:48:44.000+08:00",
+                    "updated_at": "2020-10-07T14:48:44.000+08:00"
+                }
+            ],
+            "intern": false,
+            "job_type": "full_time",
+            "has_salary_info": true,
+            "follow": false,
+            "salary": "NT$ 3,000,000 - 4,000,000 (年薪)",
+            "country": "TW",
+            "country_name": "台灣",
+            "city": "臺北市",
+            "company_id": 878,
+            "company": {
+                "path": "/companies/TITANSOFT",
+                "brand": "新加坡商鈦坦科技",
+                "banner": "https://s3cdn.yourator.co/banners/banners/000/001/014/medium/e1d789fbdbeb8d5fa82b4225968939e89dec85cf.png",
+                "area": "臺北市"
+            },
+            "remote_work": "remote_work_none",
+            "remote_work_description": null,
+            "remote_interview": "remote_interview_partial",
+            "remote_interview_description": "",
+            "is_active": true
+        }
+    ]
+}
