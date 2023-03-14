@@ -1,4 +1,5 @@
 import requests
+import json
 from urllib.parse import urlencode
 
 params = {
@@ -16,6 +17,9 @@ search_json = {
         }
     ]
 }
-request = requests.post(url, json=search_json)
+response = requests.post(url, json=search_json)
 
-print(request.text)
+response.encoding = 'utf-8'
+decoded_content = response.content.decode(response.encoding)
+json_data = json.loads(decoded_content)
+print(json_data)
