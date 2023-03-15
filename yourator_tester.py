@@ -2,6 +2,8 @@ import requests
 import json
 from urllib.parse import urlencode
 
+from src.jobs_parser import YouratorJobsParser
+
 # 有多個分類的話，結果會混再一起再用更新日期排序
 params = {
     "category[]": "後端工程",
@@ -17,8 +19,15 @@ response = requests.get(url)
 
 response.encoding = 'utf-8'
 decoded_content = response.content.decode(response.encoding)
-data = json.loads(decoded_content)
-print(data)
+# data = json.loads(decoded_content)
+# print(data)
+
+parser = YouratorJobsParser()
+jobs = parser.parse(decoded_content)
+
+for j in jobs:
+    print(j)
+
 
 # job_list = data['jobs']
 
