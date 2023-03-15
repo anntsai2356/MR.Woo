@@ -5,7 +5,6 @@ class JobInfo:
         self.title: str = ""
         self.company: str = ""
         self.location: str = ""
-        self.created_time: int = 0
         self.updated_time: int = 0
         self.url: str = ""
 
@@ -15,8 +14,6 @@ class JobInfo:
         if not isinstance(self.company, str) or self.company == "":
             return False
         if not isinstance(self.location, str) or self.location == "":
-            return False
-        if not isinstance(self.created_time, int):
             return False
         if not isinstance(self.updated_time, int):
             return False
@@ -29,7 +26,6 @@ class JobInfo:
             f'title       : {self.title}',
             f'company     : {self.company}',
             f'location    : {self.location}',
-            f'created_time: {self.created_time} -> {time.strftime("%Y-%m-%dT%H:%m%S", time.localtime(self.created_time))}',
             f'updated_time: {self.updated_time} -> {time.strftime("%Y-%m-%dT%H:%m%S", time.localtime(self.updated_time))}',
             f'url         : {self.url}',
         ])
