@@ -20,7 +20,7 @@ class JobInfo:
     def fieldnames():
         return ["title", "company", "location", "updated_time", "url"]
 
-    def toObject(self):
+    def toBuiltinDict(self):
         return {
             "title": self.title,
             "company": self.company,

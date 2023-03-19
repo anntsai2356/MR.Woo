@@ -180,7 +180,7 @@ if __name__ == "__main__":
         csvfile = csv.DictWriter(f, fieldnames=JobInfo.fieldnames())
         csvfile.writeheader()
         for job in jobs:
-            csvfile.writerow(job.toObject())
+            csvfile.writerow(job.toBuiltinDict())
 
     with Path("tmp.csv").open("r") as f:
         for row in csv.DictReader(f):
