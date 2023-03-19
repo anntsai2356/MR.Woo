@@ -20,7 +20,7 @@ class JobsParser:
             return self._parseImpl(obj)
 
         except ValueError:
-            print("ERROR: JobParser::parse failed to parse content: {}".format(content[:20] + "..."))
+            print("ERROR: JobParser::parse failed to parse content: {}".format(decoded_content[:20] + "..."))
             return []
 
     @staticmethod
@@ -88,7 +88,8 @@ class CakeresumeJobsParser(JobsParser):
             detail = JobInfo()
             detail.title = self._getValueRecursively(info, 'title')
             detail.company = self._getValueRecursively(info, 'page', 'name')
-            detail.location = self._getValueRecursively(info, 'flat_location_list')[0]
+            if len(self._getValueRecursively(info, 'flat_location_list')):
+                detail.location = self._getValueRecursively(info, 'flat_location_list')[0]
             detail.updated_time = int(self._getValueRecursively(info, 'content_updated_at'))
             detail.url = "https://www.cakeresume.com/companies/{}/jobs/{}".format(
                 self._getValueRecursively(info, 'page', 'path'),
@@ -134,55 +135,3 @@ class OZFJobsParser(JobsParser):
                 continue
             result.append(detail)
         return result
-
-
-if __name__ == "__main__":
-    import requests
-    import json
-    from urllib.parse import urlencode
-
-
-    params = {
-        "ro": 0,
-        "kwop": 7,
-        "keyword": "後端工程師",
-        "expansionType": "area,spec,com,job,wf,wktm",
-        "order": 14,
-        "asc": 0,
-        "page": 6,
-        "mode": "s",
-        "jobsource": "2018indexpoc",
-        "langFlag": 0,
-        "langStatus": 0,
-        "recommendJob": 1,
-        "hotJob": 1,
-    }
-    url = "https://www.104.com.tw/jobs/search/list?" + urlencode(params)
-
-    headers ={
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36',
-            'Referer': 'https://www.104.com.tw/jobs/search/',
-    }
-
-    response = requests.get(url, headers=headers)
-
-    response.encoding = 'utf-8'
-    decoded_content = response.content.decode(response.encoding)
-    # data = json.loads(decoded_content)
-    # print(data)
-
-    parser = OZFJobsParser()
-    jobs = parser.parse(decoded_content)
-
-    from pathlib import Path
-    import csv
-    with Path("tmp.csv").open("w", newline="\n") as f:
-        csvfile = csv.DictWriter(f, fieldnames=JobInfo.fieldnames())
-        csvfile.writeheader()
-        for job in jobs:
-            csvfile.writerow(job.toBuiltinDict())
-
-    with Path("tmp.csv").open("r") as f:
-        for row in csv.DictReader(f):
-            j = JobInfo(row)
-            print(j)
