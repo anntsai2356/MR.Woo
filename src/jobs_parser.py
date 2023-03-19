@@ -181,3 +181,8 @@ if __name__ == "__main__":
         csvfile.writeheader()
         for job in jobs:
             csvfile.writerow(job.toObject())
+
+    with Path("tmp.csv").open("r") as f:
+        for row in csv.DictReader(f):
+            j = JobInfo(row)
+            print(j)
