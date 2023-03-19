@@ -175,8 +175,9 @@ if __name__ == "__main__":
     jobs = parser.parse(decoded_content)
 
     from pathlib import Path
-    Path("tmp.json").write_text(decoded_content)
-
-    for j in jobs:
-        print()
-        print(j)
+    import csv
+    with Path("tmp.csv").open("w", newline="\n") as f:
+        csvfile = csv.DictWriter(f, fieldnames=JobInfo.fieldnames())
+        csvfile.writeheader()
+        for job in jobs:
+            csvfile.writerow(job.toObject())

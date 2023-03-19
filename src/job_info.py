@@ -1,5 +1,6 @@
 import time
 
+
 class JobInfo:
     def __init__(self) -> None:
         self.title: str = ""
@@ -7,6 +8,19 @@ class JobInfo:
         self.location: str = ""
         self.updated_time: int = 0
         self.url: str = ""
+
+    @staticmethod
+    def fieldnames():
+        return ["title", "company", "location", "updated_time", "url"]
+
+    def toObject(self):
+        return {
+            "title": self.title,
+            "company": self.company,
+            "location": self.location,
+            "updated_time": self.updated_time,
+            "url": self.url,
+        }
 
     def __bool__(self):
         if not isinstance(self.title, str) or self.title == "":
