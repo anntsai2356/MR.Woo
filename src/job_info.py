@@ -34,7 +34,7 @@ class JobInfo:
             return False
         if not isinstance(self.company, str) or self.company == "":
             return False
-        if not isinstance(self.location, str) or self.location == "":
+        if not isinstance(self.location, str):
             return False
         if not isinstance(self.updated_time, int):
             return False

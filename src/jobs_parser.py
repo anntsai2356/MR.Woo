@@ -88,7 +88,8 @@ class CakeresumeJobsParser(JobsParser):
             detail = JobInfo()
             detail.title = self._getValueRecursively(info, 'title')
             detail.company = self._getValueRecursively(info, 'page', 'name')
-            detail.location = self._getValueRecursively(info, 'flat_location_list')[0]
+            if len(self._getValueRecursively(info, 'flat_location_list')):
+                detail.location = self._getValueRecursively(info, 'flat_location_list')[0]
             detail.updated_time = int(self._getValueRecursively(info, 'content_updated_at'))
             detail.url = "https://www.cakeresume.com/companies/{}/jobs/{}".format(
                 self._getValueRecursively(info, 'page', 'path'),
