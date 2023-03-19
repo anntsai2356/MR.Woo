@@ -1,12 +1,33 @@
 import time
 
+
 class JobInfo:
-    def __init__(self) -> None:
+    def __init__(self, csvobj: object = None) -> None:
         self.title: str = ""
         self.company: str = ""
         self.location: str = ""
         self.updated_time: int = 0
         self.url: str = ""
+
+        if csvobj:
+            self.title = csvobj["title"]
+            self.company = csvobj["company"]
+            self.location = csvobj["location"]
+            self.updated_time = int(csvobj["updated_time"])
+            self.url = csvobj["url"]
+
+    @staticmethod
+    def fieldnames():
+        return ["title", "company", "location", "updated_time", "url"]
+
+    def toBuiltinDict(self):
+        return {
+            "title": self.title,
+            "company": self.company,
+            "location": self.location,
+            "updated_time": self.updated_time,
+            "url": self.url,
+        }
 
     def __bool__(self):
         if not isinstance(self.title, str) or self.title == "":
