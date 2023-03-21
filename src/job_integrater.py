@@ -63,12 +63,37 @@ class JobIntegrater:
 
         return jobs
 
+    def build(self):
+        fields = [
+            "title",
+            "company",
+            "location",
+            "platforms",
+        ]
+        jobs = self.groupData()
+
+        with pathlib.Path(base_directory).joinpath("data", "jobs.csv").open(
+            "w", encoding="utf-8", newline=""
+        ) as f:
+            csvfile = csv.DictWriter(f, fieldnames=fields)
+            csvfile.writeheader()
+            for job in jobs.values():
+                platforms_join = "|"
+                for item in job["platforms"].values():
+                    item_string = "/".join(
+                        f"{key}:{value}" for key, value in item.items()
+                    )
+                    platforms_join += item_string + "|"
+
+                job["platforms"] = platforms_join
+                csvfile.writerow(job)
+
 
 if __name__ == "__main__":
     j = JobIntegrater()
-    jobs = j.groupData()
+    jobs = j.buildFile()
 
-    import json
+    # import json
 
-    jobs_json = json.dumps(jobs, ensure_ascii=False)
-    print(jobs_json)
+    # jobs_json = json.dumps(jobs, ensure_ascii=False)
+    # print(jobs_json)
