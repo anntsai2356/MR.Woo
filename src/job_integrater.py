@@ -28,10 +28,45 @@ class JobIntegrater:
 
         return jobs
 
+    def groupData(self) -> dict:
+        jobs = {}
+
+        job_sites_data = {}
+        for jos_site_name in self.job_sites:
+            job_sites_data[jos_site_name] = self.importData(jos_site_name)
+
+        for platform_name, platform_data in job_sites_data.items():
+            for item in platform_data:
+                platform = {}
+                job_unique_key = ""
+
+                job_unique_key = item["title"] + "_" + item["company"]
+                platform = {
+                    "name": platform_name,
+                    "updated_time": item["updated_time"],
+                    "url": item["url"],
+                }
+
+                if job_unique_key in jobs:
+                    jobs[job_unique_key]["platforms"][platform_name] = platform
+                else:
+                    platforms = {}
+                    job = {}
+                    platforms[platform_name] = platform
+                    job = {
+                        "title": item["title"],
+                        "company": item["company"],
+                        "location": item["location"],
+                        "platforms": platforms,
+                    }
+                    jobs[job_unique_key] = job
+
+        return jobs
+
 
 if __name__ == "__main__":
     j = JobIntegrater()
-    jobs = j.importData("yourator")
+    jobs = j.groupData()
 
     import json
 
