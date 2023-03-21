@@ -3,7 +3,8 @@ import json
 import math
 import pathlib
 import requests
-from jobs_parser import OZFJobsParser, JobInfo
+from job_info import JobInfo
+from jobs_parser import OZFJobsParser
 from urllib.parse import urlencode
 
 base_directory = pathlib.Path(__file__).parents[1]
