@@ -96,9 +96,6 @@ class _OZFRequestHelperImpl(RequestHelper):
         decoded_content = response.content.decode("utf-8")
         data = json.loads(decoded_content)
         self._total_pages = data["data"]["totalPage"]
-        from pathlib import Path
-        Path("__pycache__").joinpath(
-            f"{self._queried_pages}.json").write_text(decoded_content)
         self._queried_pages += 1
 
         out_jobs_list += OZFJobsParser().parse(decoded_content)
@@ -193,3 +190,11 @@ class RequestHelperHandle:
         elif type == RequestHelper.SiteType.CAKERESUME:
             return _CakeresumeRequestHelperImpl()
         assert False, "ERROR: Unsupport request type"
+
+
+if __name__ == "__main__":
+    helper = RequestHelperHandle.get(RequestHelper.SiteType.CAKERESUME)
+    jobs = helper.getJobsList()
+    for j in jobs:
+        print(j)
+        print()
