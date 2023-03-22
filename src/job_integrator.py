@@ -58,7 +58,7 @@ class JobIntegrator:
 
         return jobs_group
 
-    def combineAndExport(self) -> None:
+    def combineAndExport(self, file_path) -> None:
         fields = [
             "title",
             "company",
@@ -67,9 +67,7 @@ class JobIntegrator:
         ]
         jobs_group = self._groupData()
 
-        with pathlib.Path(base_directory).joinpath("data", "jobs.csv").open(
-            "w", encoding="utf-8", newline=""
-        ) as f:
+        with open(file_path, "w", encoding="utf-8", newline="") as f:
             csvfile = csv.DictWriter(f, fieldnames=fields)
             csvfile.writeheader()
             csvfile.writerows(jobs_group.values())
@@ -84,6 +82,8 @@ if __name__ == "__main__":
         # SiteType.OZF,
         SiteType.YOURATOR,
     ]
+    file_path = pathlib.Path(base_directory).joinpath("data", "jobs.csv")
+    #---
 
     integrator = JobIntegrator()
     for site_type in sites:
@@ -93,4 +93,4 @@ if __name__ == "__main__":
 
         integrator.add(site_type, jobs)
 
-    integrator.combineAndExport()
+    integrator.combineAndExport(file_path)
