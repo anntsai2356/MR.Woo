@@ -91,7 +91,7 @@ class JobIntegrater:
 
 if __name__ == "__main__":
     j = JobIntegrater()
-    jobs = j.buildFile()
+    jobs = j.build()
 
     # import json
 
