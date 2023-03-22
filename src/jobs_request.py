@@ -1,7 +1,7 @@
 from jobs_parser import OZFJobsParser, CakeresumeJobsParser, YouratorJobsParser
 from job_info import JobInfo
 from urllib.parse import urlencode
-from enum import Enum
+from site_types import SiteType
 import json
 import math
 import requests
@@ -14,16 +14,11 @@ class RequestHelper:
     Using RequestHelperHandle.get() to construct a concrete RequestHelper instead of
     calling RequestHelper() directly.
     """
-    class SiteType(Enum):
-        UNSUPPORTED = -1
-        OZF = 0
-        YOURATOR = 1
-        CAKERESUME = 2
 
     def __init__(self, site_type: SiteType = SiteType.UNSUPPORTED) -> None:
         assert type(
             self) != RequestHelper, "ERROR: use RequestHelperHandle.get() instead."
-        self._type: RequestHelper.SiteType = site_type
+        self._type: SiteType = site_type
 
     def _getJobs(self, out_jobs_list: list[JobInfo]) -> bool:
         """
@@ -65,7 +60,7 @@ class RequestHelper:
 
 class _OZFRequestHelperImpl(RequestHelper):
     def __init__(self) -> None:
-        super().__init__(RequestHelper.SiteType.OZF)
+        super().__init__(SiteType.OZF)
         self._total_pages: int = 999
         self._queried_pages: int = 1
 
@@ -105,7 +100,7 @@ class _OZFRequestHelperImpl(RequestHelper):
 
 class _CakeresumeRequestHelperImpl(RequestHelper):
     def __init__(self) -> None:
-        super().__init__(RequestHelper.SiteType.CAKERESUME)
+        super().__init__(SiteType.CAKERESUME)
         self._total_pages: int = 999
         self._queried_pages: int = 0
 
@@ -143,7 +138,7 @@ class _CakeresumeRequestHelperImpl(RequestHelper):
 
 class _YouratorRequestHelperImpl(RequestHelper):
     def __init__(self) -> None:
-        super().__init__(RequestHelper.SiteType.CAKERESUME)
+        super().__init__(SiteType.CAKERESUME)
         self._total_pages: int = 999
         self._queried_pages: int = 1
 
@@ -179,21 +174,21 @@ class RequestHelperHandle:
         assert False, "RequestHelperHandle should not construct."
 
     @staticmethod
-    def get(type: RequestHelper.SiteType = RequestHelper.SiteType.UNSUPPORTED) -> RequestHelper:
+    def get(type: SiteType = SiteType.UNSUPPORTED) -> RequestHelper:
         """
         Get the specific RequestHelper by the given SiteType |type|.
         """
-        if type == RequestHelper.SiteType.OZF:
+        if type == SiteType.OZF:
             return _OZFRequestHelperImpl()
-        elif type == RequestHelper.SiteType.YOURATOR:
+        elif type == SiteType.YOURATOR:
             return _YouratorRequestHelperImpl()
-        elif type == RequestHelper.SiteType.CAKERESUME:
+        elif type == SiteType.CAKERESUME:
             return _CakeresumeRequestHelperImpl()
         assert False, "ERROR: Unsupport request type"
 
 
 if __name__ == "__main__":
-    helper = RequestHelperHandle.get(RequestHelper.SiteType.CAKERESUME)
+    helper = RequestHelperHandle.get(SiteType.CAKERESUME)
     jobs = helper.getJobsList()
     for j in jobs:
         print(j)
