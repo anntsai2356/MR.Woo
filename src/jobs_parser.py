@@ -74,13 +74,13 @@ class CakeresumeJobsParser(JobsParser):
 
     def _parseImpl(self, json_obj: object) -> list[JobInfo]:
         hits_list = self._getValueRecursively(json_obj, "results")
-        if not hits_list or not isinstance(hits_list, list):
+        if hits_list == None or not isinstance(hits_list, list):
             print("ERROR: CakeresumeJobsParser::_parseImpl got invalid results.")
             return result
 
         hits = self._getValueRecursively(hits_list[0], "hits")
         result: list[JobInfo] = []
-        if not hits or not isinstance(hits, list):
+        if hits == None or not isinstance(hits, list):
             print("ERROR: CakeresumeJobsParser::_parseImpl got invalid hits.")
             return result
 
@@ -88,7 +88,7 @@ class CakeresumeJobsParser(JobsParser):
             detail = JobInfo()
             detail.title = self._getValueRecursively(info, 'title')
             detail.company = self._getValueRecursively(info, 'page', 'name')
-            if len(self._getValueRecursively(info, 'flat_location_list')):
+            if len(self._getValueRecursively(info, 'flat_location_list')) > 0:
                 detail.location = self._getValueRecursively(info, 'flat_location_list')[0]
             detail.updated_time = int(self._getValueRecursively(info, 'content_updated_at'))
             detail.url = "https://www.cakeresume.com/companies/{}/jobs/{}".format(
@@ -111,7 +111,7 @@ class OZFJobsParser(JobsParser):
     def _parseImpl(self, json_obj: object) -> list[JobInfo]:
         job_list = self._getValueRecursively(json_obj, "data", "list")
         result: list[JobInfo] = []
-        if not job_list or not isinstance(job_list, list):
+        if job_list == None or not isinstance(job_list, list):
             print("ERROR: OZFJobsParser::_parseImpl got invalid hits.")
             return result
 
