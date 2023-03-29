@@ -18,10 +18,10 @@ class JobIntegrator:
         "platform",
         "preference",
     ]
-    jobs = []
+    _jobs = []
 
     def __init__(self) -> None:
-        self.jobs = []
+        self._jobs = []
 
     def add(self, site_type: SiteType, site_jobs: list) -> None:
         if site_jobs == []:
@@ -38,7 +38,7 @@ class JobIntegrator:
                 "platform": site_type.name,
                 "preference": PreferenceType.UNASSIGNED.value,
             }
-            self.jobs.append(item)
+            self._jobs.append(item)
 
     def _group(self, data: list) -> dict:
         job_group = {}
@@ -137,30 +137,30 @@ class JobIntegrator:
 
         return result
 
-    def upsert(self, to_file) -> None:
+    def upsert(self, to_file_path) -> None:
         """
-        to_data: history data
+        to_file_path: history data file path
 
         Update exist data and insert new data after comparing fresh data and history data.
-        Then the result of upsert will be replaced in self.jobs.
+        Then the result of upsert will be replaced in self._jobs.
         """
 
-        to_data = FileHelper.importDictData(to_file, self.fields)
+        to_data = FileHelper.importDictData(to_file_path, self.fields)
         if to_data == []:
             return
 
         to_data_group = self._group(to_data)
-        for job in self.jobs:
+        for job in self._jobs:
             unique_key = job["title"] + "_" + job["company"]
             if unique_key in to_data_group.keys():
                 self._updateData(unique_key, job, to_data_group)
             else:
                 self._insertData(unique_key, job, to_data_group)
 
-        self.jobs = self._removeGrouping(to_data_group)
+        self._jobs = self._removeGrouping(to_data_group)
 
     def export(self, file_path) -> None:
-        FileHelper.exportData(file_path, self.fields, self.jobs, True)
+        FileHelper.exportData(file_path, self.fields, self._jobs, True)
 
 
 if __name__ == "__main__":
