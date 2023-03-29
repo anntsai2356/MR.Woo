@@ -76,15 +76,15 @@ class JobIntegrator:
 
         return job_group
 
-    """
-    unique_key: group by title and company for searching
-    from_data: new getting data
-    to_data: history data
-
-    update history data with new data
-    """
-
     def _updateData(self, unique_key, from_data: dict, to_data: dict):
+        """
+        unique_key: group by title and company for searching
+        from_data: fresh data
+        to_data: history data
+
+        Update history data with new data.
+        """
+
         platform = {
             "name": from_data["platform"],
             "updated_time": from_data["updated_time"],
@@ -92,15 +92,15 @@ class JobIntegrator:
         }
         to_data[unique_key]["platforms"][from_data["platform"]] = platform
 
-    """
-    unique_key: group by title and company for searching
-    from_data: new getting data
-    to_data: history data
-
-    insert new data into history data
-    """
-
     def _insertData(self, unique_key, from_data: dict, to_data: dict):
+        """
+        unique_key: group by title and company for searching
+        from_data: fresh data
+        to_data: history data
+
+        Insert new data into history data.
+        """
+
         platforms = {}
         job = {}
         platform = {
@@ -138,6 +138,13 @@ class JobIntegrator:
         return result
 
     def upsert(self, to_file) -> None:
+        """
+        to_data: history data
+
+        Update exist data and insert new data after comparing fresh data and history data.
+        Then the result of upsert will be replaced in self.jobs.
+        """
+
         to_data = FileHelper.importDictData(to_file, self.fields)
         if to_data == []:
             return
