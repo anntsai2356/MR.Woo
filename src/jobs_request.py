@@ -20,7 +20,7 @@ class RequestHelper:
             self) != RequestHelper, "ERROR: use RequestHelperHandle.get() instead."
         self._type: SiteType = site_type
 
-    def _getJobs(self, out_jobs_list: list[JobInfo]) -> bool:
+    def __getJobs(self, out_jobs_list: list[JobInfo]) -> bool:
         """
         Request the jobs' information.
 
@@ -28,7 +28,12 @@ class RequestHelper:
         and the return value means whether there still have the remaining jobs
         information.
         """
-        assert False, "RequestHelper::_getJobsByPage is not implemented yet."
+        response = self._getResponse()
+        if response.status_code != 200:
+            print(
+                f"WARN: get HTTP status code {response.status_code} from URL {response.url}")
+            return False
+        return self._paserResponse(response.content.decode("utf-8"), out_jobs_list)
 
     @staticmethod
     def __checkIfListIsValid(target: list[JobInfo]):
@@ -40,6 +45,24 @@ class RequestHelper:
                 return False
         return True
 
+    def _paserResponse(self, decoded_content: str, out_jobs_list: list[JobInfo]) -> bool:
+        """
+        Parse the response from certain sites.
+
+        The jobs should be appended in-place in the list |out_jobs_list|,
+        and the return value means whether there still have the remaining jobs
+        information.
+
+        Returns the identifier of whether job information is left.
+        """
+        assert False, "RequestHelper::_paserResponse is not implemented yet."
+
+    def _getResponse(self) -> requests.Response:
+        """
+        Request to certain sites and obtain response from them.
+        """
+        assert False, "RequestHelper::_getResponse is not implemented yet."
+
     def siteType(self) -> SiteType:
         return self._type
 
@@ -50,7 +73,7 @@ class RequestHelper:
         # TODO: dynamic query keyword
         result: list[JobInfo] = []
 
-        while self._getJobs(result):
+        while self.__getJobs(result):
             if not self.__checkIfListIsValid(result):
                 print("ERROR: RequestHelper::getJobsList got invalid job information.")
                 return []
@@ -64,7 +87,7 @@ class _OZFRequestHelperImpl(RequestHelper):
         self._total_pages: int = 999
         self._queried_pages: int = 1
 
-    def _getJobs(self, out_jobs_list: list[JobInfo]) -> bool:
+    def _getResponse(self) -> requests.Response:
         URL = "https://www.104.com.tw/jobs/search/list?"
         PARAMS = {
             "ro": 0,
@@ -88,8 +111,9 @@ class _OZFRequestHelperImpl(RequestHelper):
         PARAMS["page"] = self._queried_pages
 
         url = URL + urlencode(PARAMS)
-        response = requests.get(url, headers=HEADERS)
-        decoded_content = response.content.decode("utf-8")
+        return requests.get(url, headers=HEADERS)
+
+    def _paserResponse(self, decoded_content: str, out_jobs_list: list[JobInfo]) -> bool:
         data = json.loads(decoded_content)
         self._total_pages = data["data"]["totalPage"]
         self._queried_pages += 1
@@ -105,7 +129,7 @@ class _CakeresumeRequestHelperImpl(RequestHelper):
         self._total_pages: int = 999
         self._queried_pages: int = 0
 
-    def _getJobs(self, out_jobs_list: list[JobInfo]) -> bool:
+    def _getResponse(self) -> requests.Response:
         URL = "https://966rg9m3ek-dsn.algolia.net/1/indexes/*/queries?"
         # TODO: handle x-algolia-api-key
         PARAMS = {
@@ -126,8 +150,9 @@ class _CakeresumeRequestHelperImpl(RequestHelper):
 
         SEARCH_JSON["requests"][0]["params"] += f"&page={self._queried_pages}"
         url = URL + urlencode(PARAMS)
-        response = requests.post(url, json=SEARCH_JSON)
-        decoded_content = response.content.decode("utf-8")
+        return requests.post(url, json=SEARCH_JSON)
+
+    def _paserResponse(self, decoded_content: str, out_jobs_list: list[JobInfo]) -> bool:
         data = json.loads(decoded_content)
         self._total_pages = data["results"][0]["nbPages"]
         self._queried_pages += 1
@@ -143,7 +168,7 @@ class _YouratorRequestHelperImpl(RequestHelper):
         self._total_pages: int = 999
         self._queried_pages: int = 1
 
-    def _getJobs(self, out_jobs_list: list[JobInfo]) -> bool:
+    def _getResponse(self) -> requests.Response:
         URL = "https://www.yourator.co/api/v2/jobs?"
         PARAMS = {
             "category[]": "後端工程",
@@ -155,8 +180,9 @@ class _YouratorRequestHelperImpl(RequestHelper):
         }
         PARAMS["page"] = self._queried_pages
         url = URL + urlencode(PARAMS)
-        response = requests.get(url)
-        decoded_content = response.content.decode("utf-8")
+        return requests.get(url)
+
+    def _paserResponse(self, decoded_content: str, out_jobs_list: list[JobInfo]) -> bool:
         data = json.loads(decoded_content)
         self._total_pages = math.ceil(data["total"] / 20)
         self._queried_pages += 1
