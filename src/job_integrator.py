@@ -79,24 +79,24 @@ class JobIntegrator:
     def _updateData(self, unique_key, from_data: dict, to_data: dict):
         """
         unique_key: group by title and company for searching
-        from_data: fresh data
-        to_data: history data
+        from_data: history data
+        to_data: fresh data
 
         Update history data with new data.
         """
 
         platform = {
-            "name": from_data["platform"],
-            "updated_time": from_data["updated_time"],
-            "url": from_data["url"],
+            "name": to_data["platform"],
+            "updated_time": to_data["updated_time"],
+            "url": to_data["url"],
         }
-        to_data[unique_key]["platforms"][from_data["platform"]] = platform
+        from_data[unique_key]["platforms"][to_data["platform"]] = platform
 
     def _insertData(self, unique_key, from_data: dict, to_data: dict):
         """
         unique_key: group by title and company for searching
-        from_data: fresh data
-        to_data: history data
+        from_data: history data
+        to_data: fresh data
 
         Insert new data into history data.
         """
@@ -104,19 +104,19 @@ class JobIntegrator:
         platforms = {}
         job = {}
         platform = {
-            "name": from_data["platform"],
-            "updated_time": from_data["updated_time"],
-            "url": from_data["url"],
+            "name": to_data["platform"],
+            "updated_time": to_data["updated_time"],
+            "url": to_data["url"],
         }
-        platforms[from_data["platform"]] = platform
+        platforms[to_data["platform"]] = platform
         job = {
-            "title": from_data["title"],
-            "company": from_data["company"],
-            "location": from_data["location"],
-            "preference": from_data["preference"],
+            "title": to_data["title"],
+            "company": to_data["company"],
+            "location": to_data["location"],
+            "preference": to_data["preference"],
             "platforms": platforms,
         }
-        to_data[unique_key] = job
+        from_data[unique_key] = job
 
     def _removeGrouping(self, data_group) -> list:
         result = []
@@ -137,27 +137,27 @@ class JobIntegrator:
 
         return result
 
-    def upsert(self, to_file_path) -> None:
+    def upsert(self, from_file_path) -> None:
         """
-        to_file_path: history data file path
+        from_file_path: history data file path
 
         Update exist data and insert new data after comparing fresh data and history data.
         Then the result of upsert will be replaced in self._jobs.
         """
 
-        to_data = FileHelper.importDictData(to_file_path, self.fields)
-        if to_data == []:
+        from_data = FileHelper.importDictData(from_file_path, self.fields)
+        if from_data == []:
             return
 
-        to_data_group = self._group(to_data)
+        from_data_group = self._group(from_data)
         for job in self._jobs:
             unique_key = job["title"] + "_" + job["company"]
-            if unique_key in to_data_group.keys():
-                self._updateData(unique_key, job, to_data_group)
+            if unique_key in from_data_group.keys():
+                self._updateData(unique_key, from_data_group, job)
             else:
-                self._insertData(unique_key, job, to_data_group)
+                self._insertData(unique_key, from_data_group, job)
 
-        self._jobs = self._removeGrouping(to_data_group)
+        self._jobs = self._removeGrouping(from_data_group)
 
     def export(self, file_path) -> None:
         FileHelper.exportData(file_path, self.fields, self._jobs, True)
