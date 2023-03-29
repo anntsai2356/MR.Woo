@@ -25,6 +25,7 @@ class OzfHelper:
         "langStatus": 0,
         "recommendJob": 1,
         "hotJob": 1,
+        "area": "6001001000,6001002000", # 6001001000: 台北市; 6001002000: 新北市
     }
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36",

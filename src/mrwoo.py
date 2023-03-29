@@ -5,12 +5,13 @@ from jobs_request import RequestHelperHandle
 from job_integrator import JobIntegrator
 from pathlib import Path
 from site_types import SiteType
+from datetime import datetime
 
 
 PROG_NAME = "mrwoo"
 
 DEFAULT_OUTPUT = Path(__file__).parent.joinpath(
-    "..", "data", "jobs.csv").resolve()
+    "..", "data", f'jobs_{datetime.now().strftime("%Y-%m-%d")}.csv').resolve()
 DEFAULT_SITES = set(filter(lambda t: t != SiteType.UNSUPPORTED, SiteType))
 OPT_DEST = "out_dest"
 OPT_KEYWORD = "keyword"
@@ -65,7 +66,7 @@ def mrwooMain():
     if not ARG_DEST.parent.exists():
         ARG_DEST.parent.mkdir(exist_ok=True)
 
-    integrator.combineAndExport(ARG_DEST)
+    integrator.export(ARG_DEST)
     return 0
 
 

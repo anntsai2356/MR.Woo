@@ -79,6 +79,7 @@ class _OZFRequestHelperImpl(RequestHelper):
             "langStatus": 0,
             "recommendJob": 1,
             "hotJob": 1,
+            "area": "6001001000,6001002000",  # 6001001000: 台北市; 6001002000: 新北市
         }
         HEADERS = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36",
@@ -109,7 +110,7 @@ class _CakeresumeRequestHelperImpl(RequestHelper):
         # TODO: handle x-algolia-api-key
         PARAMS = {
             "x-algolia-agent": "Algolia for JavaScript (4.14.2); Browser (lite); instantsearch.js (4.49.1); react (18.2.0); react-instantsearch (6.38.1); react-instantsearch-hooks (6.38.1); JS Helper (3.11.1)",
-            "x-algolia-api-key": "MWYxNjc4MjFlODZiNjVmZWNiNWFlNTk1ZGVkMDkyYzM0YjUyNWQ4NjhmMjdlNWQ2ZjdlYmIzOWQwODIxNzk2OXZhbGlkVW50aWw9MTY3OTkxNDY4NiZyZXN0cmljdEluZGljZXM9Sm9iJTJDSm9iX29yZGVyX2J5X2NvbnRlbnRfdXBkYXRlZF9hdCUyQ0pvYl9wbGF5Z3JvdW5kJTJDUGFnZSUyQ1BhZ2Vfb3JkZXJfYnlfY29udGVudF91cGRhdGVkX2F0JmZpbHRlcnM9YWFzbV9zdGF0ZSUzQSslMjJjcmVhdGVkJTIyK0FORCtub2luZGV4JTNBK2ZhbHNlJmhpdHNQZXJQYWdlPTEwJmF0dHJpYnV0ZXNUb1NuaXBwZXQ9JTVCJTIyZGVzY3JpcHRpb25fcGxhaW5fdGV4dCUzQTgwJTIyJTVEJmhpZ2hsaWdodFByZVRhZz0lM0NtYXJrJTNFJmhpZ2hsaWdodFBvc3RUYWc9JTNDJTJGbWFyayUzRQ==",
+            "x-algolia-api-key": "ZThkNmExMWRiZjQ4ZGJlZWU4YTc1MTEyN2U2Y2ViZTUxMWM1MTdlODM4YWE2MWYzYThhZWI1NzZiM2Y5ZTI5N3ZhbGlkVW50aWw9MTY4MDYyMjk1MSZyZXN0cmljdEluZGljZXM9Sm9iJTJDSm9iX29yZGVyX2J5X2NvbnRlbnRfdXBkYXRlZF9hdCUyQ0pvYl9wbGF5Z3JvdW5kJTJDUGFnZSUyQ1BhZ2Vfb3JkZXJfYnlfY29udGVudF91cGRhdGVkX2F0JmZpbHRlcnM9YWFzbV9zdGF0ZSUzQSslMjJjcmVhdGVkJTIyK0FORCtub2luZGV4JTNBK2ZhbHNlJmhpdHNQZXJQYWdlPTEwJmF0dHJpYnV0ZXNUb1NuaXBwZXQ9JTVCJTIyZGVzY3JpcHRpb25fcGxhaW5fdGV4dCUzQTgwJTIyJTVEJmhpZ2hsaWdodFByZVRhZz0lM0NtYXJrJTNFJmhpZ2hsaWdodFBvc3RUYWc9JTNDJTJGbWFyayUzRQ==",
             "x-algolia-application-id": "966RG9M3EK",
         }
         SEARCH_JSON = {
