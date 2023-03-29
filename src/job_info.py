@@ -1,4 +1,4 @@
-import time
+from preference_types import *
 
 
 class JobInfo:
@@ -8,6 +8,8 @@ class JobInfo:
         self.location: str = ""
         self.updated_time: int = 0
         self.url: str = ""
+        self.platform: str = ""
+        self.preference: int = PreferenceType.UNASSIGNED
 
         if csvobj:
             self.title = csvobj["title"]
@@ -15,10 +17,12 @@ class JobInfo:
             self.location = csvobj["location"]
             self.updated_time = int(csvobj["updated_time"])
             self.url = csvobj["url"]
+            self.platform = csvobj["platform"]
+            self.preference = csvobj["preference"]
 
     @staticmethod
     def fieldnames():
-        return ["title", "company", "location", "updated_time", "url"]
+        return ["title", "company", "location", "updated_time", "url", "platform", "preference"]
 
     def toBuiltinDict(self):
         return {
@@ -27,6 +31,8 @@ class JobInfo:
             "location": self.location,
             "updated_time": self.updated_time,
             "url": self.url,
+            "platform": self.platform,
+            "preference": self.preference,
         }
 
     def __bool__(self):
@@ -40,13 +46,8 @@ class JobInfo:
             return False
         if not isinstance(self.url, str) or self.url == "":
             return False
+        if not isinstance(self.platform, str) or self.platform == "":
+            return False
+        if not isinstance(self.preference, int):
+            return False
         return True
-
-    def __str__(self):
-        return '\n'.join([
-            f'title       : {self.title}',
-            f'company     : {self.company}',
-            f'location    : {self.location}',
-            f'updated_time: {self.updated_time} -> {time.strftime("%Y-%m-%dT%H:%m%S", time.localtime(self.updated_time))}',
-            f'url         : {self.url}',
-        ])
