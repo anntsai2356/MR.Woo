@@ -1,44 +1,22 @@
-import pathlib
+from pathlib import Path
 from datetime import datetime
 from job_info import JobInfo
-from preference_types import PreferenceType
-from site_types import SiteType
 from utils.file_helper import FileHelper
 
-base_directory = pathlib.Path(__file__).parents[1]
+base_directory = Path(__file__).parents[1]
 
 
-class JobIntegrator:
-    fields = [
-        "title",
-        "company",
-        "location",
-        "updated_time",
-        "url",
-        "platform",
-        "preference",
-    ]
-    _jobs = []
-
+class JobsIntegrator:
     def __init__(self) -> None:
-        self._jobs = []
+        self.fields = JobInfo.fieldnames()
+        self._jobs: list[JobInfo] = []
 
-    def add(self, site_type: SiteType, site_jobs: list) -> None:
+    def add(self, site_jobs: list) -> None:
         if site_jobs == []:
             return
 
         for site_job in site_jobs:
-            item = {}
-            item = {
-                "title": site_job.title,
-                "company": site_job.company,
-                "location": site_job.location,
-                "updated_time": datetime.fromtimestamp(site_job.updated_time),
-                "url": site_job.url,
-                "platform": site_type.name,
-                "preference": PreferenceType.UNASSIGNED.value,
-            }
-            self._jobs.append(item)
+            self._jobs.append(site_job)
 
     def _group(self, data: list) -> dict:
         job_group = {}
@@ -69,7 +47,7 @@ class JobIntegrator:
                     "title": job["title"],
                     "company": job["company"],
                     "location": job["location"],
-                    "preference": job["preference"],
+                    "status": job["status"],
                     "platforms": platforms,
                 }
                 job_group[job_unique_key] = item
@@ -80,7 +58,7 @@ class JobIntegrator:
         """
         unique_key: group by title and company for searching
         from_data: history data
-        to_data: fresh data
+        to_data: one of fresh data
 
         Update history data with new data.
         """
@@ -96,7 +74,7 @@ class JobIntegrator:
         """
         unique_key: group by title and company for searching
         from_data: history data
-        to_data: fresh data
+        to_data: one of fresh data
 
         Insert new data into history data.
         """
@@ -113,44 +91,55 @@ class JobIntegrator:
             "title": to_data["title"],
             "company": to_data["company"],
             "location": to_data["location"],
-            "preference": to_data["preference"],
+            "status": to_data["status"],
             "platforms": platforms,
         }
         from_data[unique_key] = job
 
     def _removeGrouping(self, data_group) -> list:
-        result = []
+        result: list[JobInfo] = []
 
         for data in data_group.values():
             for platform_info in data["platforms"].values():
-                item = {}
-                item = {
-                    "title": data["title"],
-                    "company": data["company"],
-                    "location": data["location"],
-                    "updated_time": platform_info["updated_time"],
-                    "url": platform_info["url"],
-                    "platform": platform_info["name"],
-                    "preference": data["preference"],
-                }
+                item = JobInfo()
+                item.title = data["title"]
+                item.company = data["company"]
+                item.location = data["location"]
+                item.updated_time = platform_info["updated_time"]
+                item.url = platform_info["url"]
+                item.platform = platform_info["name"]
+                item.status = data["status"]
+
                 result.append(item)
 
         return result
 
-    def upsert(self, from_file_path) -> None:
+    def upsert(self, from_file_path, to_file_path) -> None:
         """
         from_file_path: history data file path
+        to_file_path: fresh data file path
 
         Update exist data and insert new data after comparing fresh data and history data.
-        Then the result of upsert will be replaced in self._jobs.
+
+        important! >> The result of upsert will be replaced in self._jobs.
         """
 
+        to_file = Path(to_file_path)
+        assert to_file.exists(), "WARN: to_file_path doesn't exist."
+
+        from_file = Path(from_file_path)
+        if not from_file.exists():
+            FileHelper.create(from_file_path)
+            FileHelper.exportData(from_file_path, self.fields, [])
+            print(f"The file is not exist. create file ({from_file_path})")
+
+        to_data = FileHelper.importDictData(to_file_path, self.fields)
+        assert to_data != [], "WARN: Nothing to upsert. to_file_path has no any data."
+
         from_data = FileHelper.importDictData(from_file_path, self.fields)
-        if from_data == []:
-            return
 
         from_data_group = self._group(from_data)
-        for job in self._jobs:
+        for job in to_data:
             unique_key = job["title"] + "_" + job["company"]
             if unique_key in from_data_group.keys():
                 self._updateData(unique_key, from_data_group, job)
@@ -160,11 +149,15 @@ class JobIntegrator:
         self._jobs = self._removeGrouping(from_data_group)
 
     def export(self, file_path) -> None:
-        FileHelper.exportData(file_path, self.fields, self._jobs, True)
+        FileHelper.exportData(file_path, self.fields, self._jobs)
 
 
 if __name__ == "__main__":
     from jobs_request import RequestHelperHandle
+    from site_types import SiteType
+    import time
+
+    start_time = time.time()
 
     # for test
     sites = [
@@ -173,21 +166,25 @@ if __name__ == "__main__":
         SiteType.YOURATOR,
     ]
     file_name = f'jobs_{datetime.now().strftime("%Y-%m-%d")}.csv'
-    file_path = pathlib.Path(base_directory).joinpath("data", file_name)
-    to_file_path = pathlib.Path(base_directory).joinpath("data", "jobs.csv")
+    file_path = Path(base_directory).joinpath("data", file_name)
+    history_file_path = Path(base_directory).joinpath("data", "jobs.csv")
     # ---
 
-    integrator = JobIntegrator()
+    # deal with fresh result
+    integrator = JobsIntegrator()
     for site_type in sites:
         jobs: list[JobInfo] = []
         request_helper = RequestHelperHandle.get(site_type)
         jobs = request_helper.getJobsList()
 
-        integrator.add(site_type, jobs)
+        integrator.add(jobs)
 
-    # deal with new result at now
     integrator.export(file_path)
 
-    # deal with new and history result
-    integrator.upsert(to_file_path)
-    integrator.export(to_file_path)
+    # deal with fresh and history result
+    integrator = JobsIntegrator()
+    integrator.upsert(history_file_path, file_path)
+    integrator.export(history_file_path)
+
+    seconds = time.time() - start_time
+    print("Time :", time.strftime("%H:%M:%S", time.gmtime(seconds)))

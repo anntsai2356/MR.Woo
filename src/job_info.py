@@ -1,4 +1,4 @@
-from preference_types import *
+from status_types import *
 
 
 class JobInfo:
@@ -9,7 +9,7 @@ class JobInfo:
         self.updated_time: int = 0
         self.url: str = ""
         self.platform: str = ""
-        self.preference: int = PreferenceType.UNASSIGNED
+        self.status: int = StatusType.UNREAD.value
 
         if csvobj:
             self.title = csvobj["title"]
@@ -18,11 +18,19 @@ class JobInfo:
             self.updated_time = int(csvobj["updated_time"])
             self.url = csvobj["url"]
             self.platform = csvobj["platform"]
-            self.preference = csvobj["preference"]
+            self.status = csvobj["status"]
 
     @staticmethod
     def fieldnames():
-        return ["title", "company", "location", "updated_time", "url", "platform", "preference"]
+        return [
+            "title",
+            "company",
+            "location",
+            "updated_time",
+            "url",
+            "platform",
+            "status",
+        ]
 
     def toBuiltinDict(self):
         return {
@@ -32,8 +40,21 @@ class JobInfo:
             "updated_time": self.updated_time,
             "url": self.url,
             "platform": self.platform,
-            "preference": self.preference,
+            "status": self.status,
         }
+
+    def __iter__(self):
+        return iter(
+            [
+                self.title,
+                self.company,
+                self.company,
+                self.updated_time,
+                self.url,
+                self.platform,
+                self.status,
+            ]
+        )
 
     def __bool__(self):
         if not isinstance(self.title, str) or self.title == "":
@@ -48,6 +69,6 @@ class JobInfo:
             return False
         if not isinstance(self.platform, str) or self.platform == "":
             return False
-        if not isinstance(self.preference, int):
+        if not isinstance(self.status, int):
             return False
         return True

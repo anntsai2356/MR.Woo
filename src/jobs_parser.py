@@ -2,6 +2,8 @@ import json
 from time import mktime
 from datetime import datetime
 from job_info import JobInfo
+from site_types import SiteType
+from status_types import StatusType
 from typing import Any
 
 class JobsParser:
@@ -61,6 +63,9 @@ class YouratorJobsParser(JobsParser):
 
             detail.updated_time = int(mktime(datetime.fromisoformat(detail.updated_time).timetuple()))
 
+            detail.platform = SiteType.YOURATOR.name
+            detail.status = StatusType.UNREAD.value
+
             if not detail:
                 print("ERROR: YouratorJonsParser::_parseImpl got invalid job info.")
                 continue
@@ -97,6 +102,10 @@ class CakeresumeJobsParser(JobsParser):
 
             # we clip updated_time since it is in milliseconds.
             detail.updated_time = int(detail.updated_time/1000)
+
+            detail.platform = SiteType.CAKERESUME.name
+            detail.status = StatusType.UNREAD.value
+
             if not detail:
                 print("ERROR: CakeresumeJobsParser::_parseImpl got invalid job info.")
                 continue
@@ -129,6 +138,9 @@ class OZFJobsParser(JobsParser):
 
             create_datetime = datetime.strptime(updated_time, "%Y%m%d")
             detail.updated_time = int(mktime(create_datetime.timetuple()))
+
+            detail.platform = SiteType.OZF.name
+            detail.status = StatusType.UNREAD.value            
 
             if not detail:
                 print("ERROR: OZFJobsParser::_parseImpl got invalid job info.")
