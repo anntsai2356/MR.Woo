@@ -1,7 +1,7 @@
 import sys
 import argparse
 from pathlib import Path
-from jobs_request import RequestHelperHandle
+from site_helper import SiteHelperHandle
 from jobs_integrator import JobsIntegrator
 from pathlib import Path
 from site_types import SiteType
@@ -60,8 +60,8 @@ def mrwooMain():
     integrator = JobsIntegrator()
     for site in ARG_SITES:
         print(f"requesting with keyword {ARG_KEYWORD} in |{site.name}|.")
-        request_helper = RequestHelperHandle.get(site)
-        integrator.add(request_helper.getJobsList())
+        site_helper = SiteHelperHandle.get(site)
+        integrator.add(site_helper.requestJobs())
 
     if not ARG_DEST.parent.exists():
         ARG_DEST.parent.mkdir(exist_ok=True)
