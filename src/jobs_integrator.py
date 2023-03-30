@@ -170,16 +170,16 @@ if __name__ == "__main__":
     history_file_path = Path(base_directory).joinpath("data", "jobs.csv")
     # ---
 
-    # deal with fresh result at now
-    # integrator = JobsIntegrator()
-    # for site_type in sites:
-    #     jobs: list[JobInfo] = []
-    #     request_helper = RequestHelperHandle.get(site_type)
-    #     jobs = request_helper.getJobsList()
+    # deal with fresh result
+    integrator = JobsIntegrator()
+    for site_type in sites:
+        jobs: list[JobInfo] = []
+        request_helper = RequestHelperHandle.get(site_type)
+        jobs = request_helper.getJobsList()
 
-    #     integrator.add(jobs)
+        integrator.add(jobs)
 
-    # integrator.export(file_path)
+    integrator.export(file_path)
 
     # deal with fresh and history result
     integrator = JobsIntegrator()
