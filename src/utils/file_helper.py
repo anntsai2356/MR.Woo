@@ -3,6 +3,11 @@ import csv
 
 class FileHelper:
     @staticmethod
+    def create(file_path):
+        file = open(file_path, "w")
+        file.close()     
+
+    @staticmethod
     def importData(file_path: str, is_skip_header=True) -> list:
         jobs = []
 
@@ -28,14 +33,10 @@ class FileHelper:
         return jobs
 
     @staticmethod
-    def exportData(file_path: str, fields: list, data: list, is_dict_in_list=False):
+    def exportData(file_path: str, fields: list, data: list):
         with open(file_path, "w", encoding="utf-8", newline="") as f:
-            if is_dict_in_list:
-                file = csv.DictWriter(f, fieldnames=fields)
-                file.writeheader()
-            else:
-                file = csv.writer(f)
-                file.writerow(fields)
+            file = csv.writer(f)
+            file.writerow(fields)
 
             for line in data:
                 file.writerow(line)
