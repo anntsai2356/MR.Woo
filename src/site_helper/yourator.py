@@ -1,9 +1,10 @@
-from site_helper.base import AbstractSiteHelper as _AbstractSiteHelper, ParserHelper as _ParserHelper
+from site_helper.base import AbstractSiteHelper as _AbstractSiteHelper, ParserHelper as _ParserHelper, JobDetails as _JobDetails
 from requests import get as _requestGet, Response as _Response
 from urllib.parse import urlencode as _urlEncode
 from math import ceil as _ceil
 from time import mktime as _mktime
 from datetime import datetime as _datetime
+from bs4 import BeautifulSoup as _bs
 
 from job_info import JobInfo
 from site_types import SiteType
@@ -15,10 +16,12 @@ class YouratorHelper(_AbstractSiteHelper):
         super().__init__()
         self._total_pages: int = 999
         self._current_page: int = 1
+        self._cached_details: _JobDetails = None
 
     def reset(self):
         self._total_pages = 999
         self._current_page = 1
+        self._cached_details = None
 
     def _doRequestJobs(self, *args):
         URL = "https://www.yourator.co/api/v2/jobs?"
@@ -35,8 +38,7 @@ class YouratorHelper(_AbstractSiteHelper):
         return _requestGet(url)
 
     def _doParseJobsResponse(self, resp: _Response) -> list[JobInfo]:
-        content = _ParserHelper.convertContentToObject(
-            resp.content.decode('utf-8'))
+        content = _ParserHelper.convertContentToObject(resp.content.decode('utf-8'))
 
         if content == None:
             self._current_page = self._total_pages
@@ -60,8 +62,8 @@ class YouratorHelper(_AbstractSiteHelper):
 
             detail.updated_time = int(_mktime(_datetime.fromisoformat(detail.updated_time).timetuple()))
 
-            detail.site = SiteType.YOURATOR.name
-            detail.status = StatusType.UNREAD.value
+            detail.site = SiteType.YOURATOR
+            detail.status = StatusType.UNREAD
 
             if not detail:
                 print("ERROR: YouratorHelper::_doParseJobsResponse got invalid job info.")
@@ -71,3 +73,25 @@ class YouratorHelper(_AbstractSiteHelper):
 
     def _hasRemainingJobs(self) -> bool:
         return self._current_page < self._total_pages
+
+    def _getCachedJobDetails(self, info: JobInfo) -> _JobDetails:
+        return self._cached_details
+
+    def _requestJobDetails(self, info: JobInfo) -> _Response:
+        HEADERS = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36",
+            "Referer": "https://www.104.com.tw/jobs/search/",
+        }
+        return _requestGet(info.url, headers=HEADERS)
+
+    def _doParseJobDetails(self, resp: _Response) -> _JobDetails:
+        sp = _bs(resp.content, "html.parser")
+
+        self._cached_details = _JobDetails()
+        job_content = sp.find("div", class_="job__content")
+        details = job_content.find("section", class_="content__area unreset")
+        self._cached_details.overview = details.text
+        details = details.next
+        self._cached_details.requirements = details.text
+
+        return self._cached_details

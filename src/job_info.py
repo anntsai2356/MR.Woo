@@ -1,3 +1,4 @@
+from site_types import *
 from status_types import *
 
 
@@ -8,8 +9,8 @@ class JobInfo:
         self.location: str = ""
         self.updated_time: int = 0
         self.url: str = ""
-        self.site: str = ""
-        self.status: int = StatusType.UNREAD.value
+        self.site = SiteType.UNSUPPORTED
+        self.status = StatusType.UNREAD
 
         if csvobj:
             self.title = csvobj["title"]
@@ -17,8 +18,14 @@ class JobInfo:
             self.location = csvobj["location"]
             self.updated_time = int(csvobj["updated_time"])
             self.url = csvobj["url"]
-            self.site = csvobj["site"]
-            self.status = csvobj["status"]
+            try:
+                self.site = SiteType(int(csvobj["site"]))
+            except:
+                self.site = None
+            try:
+                self.status = StatusType(int(csvobj["status"]))
+            except:
+                self.status = None
 
     @staticmethod
     def fieldnames():
@@ -32,17 +39,6 @@ class JobInfo:
             "status",
         ]
 
-    def toBuiltinDict(self):
-        return {
-            "title": self.title,
-            "company": self.company,
-            "location": self.location,
-            "updated_time": self.updated_time,
-            "url": self.url,
-            "site": self.site,
-            "status": self.status,
-        }
-
     def __iter__(self):
         return iter(
             [
@@ -51,8 +47,8 @@ class JobInfo:
                 self.company,
                 self.updated_time,
                 self.url,
-                self.site,
-                self.status,
+                self.site.value,
+                self.status.value,
             ]
         )
 
@@ -67,8 +63,8 @@ class JobInfo:
             return False
         if not isinstance(self.url, str) or self.url == "":
             return False
-        if not isinstance(self.site, str) or self.site == "":
+        if not isinstance(self.site, SiteType):
             return False
-        if not isinstance(self.status, int):
+        if not isinstance(self.status, StatusType):
             return False
         return True
