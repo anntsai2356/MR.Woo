@@ -77,7 +77,7 @@ class OZFHelper(_AbstractSiteHelper):
             create_datetime = _datetime.strptime(updated_time, "%Y%m%d")
             detail.updated_time = int(_mktime(create_datetime.timetuple()))
 
-            detail.platform = SiteType.OZF.name
+            detail.site = SiteType.OZF.name
             detail.status = StatusType.UNREAD.value
 
             if not detail:

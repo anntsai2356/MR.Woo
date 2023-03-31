@@ -8,7 +8,7 @@ class JobInfo:
         self.location: str = ""
         self.updated_time: int = 0
         self.url: str = ""
-        self.platform: str = ""
+        self.site: str = ""
         self.status: int = StatusType.UNREAD.value
 
         if csvobj:
@@ -17,7 +17,7 @@ class JobInfo:
             self.location = csvobj["location"]
             self.updated_time = int(csvobj["updated_time"])
             self.url = csvobj["url"]
-            self.platform = csvobj["platform"]
+            self.site = csvobj["site"]
             self.status = csvobj["status"]
 
     @staticmethod
@@ -28,7 +28,7 @@ class JobInfo:
             "location",
             "updated_time",
             "url",
-            "platform",
+            "site",
             "status",
         ]
 
@@ -39,7 +39,7 @@ class JobInfo:
             "location": self.location,
             "updated_time": self.updated_time,
             "url": self.url,
-            "platform": self.platform,
+            "site": self.site,
             "status": self.status,
         }
 
@@ -51,7 +51,7 @@ class JobInfo:
                 self.company,
                 self.updated_time,
                 self.url,
-                self.platform,
+                self.site,
                 self.status,
             ]
         )
@@ -67,7 +67,7 @@ class JobInfo:
             return False
         if not isinstance(self.url, str) or self.url == "":
             return False
-        if not isinstance(self.platform, str) or self.platform == "":
+        if not isinstance(self.site, str) or self.site == "":
             return False
         if not isinstance(self.status, int):
             return False
