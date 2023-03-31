@@ -75,7 +75,7 @@ class CakeresumeHelper(_AbstractSiteHelper):
             # we clip updated_time since it is in milliseconds.
             detail.updated_time = int(detail.updated_time/1000)
 
-            detail.platform = SiteType.CAKERESUME.name
+            detail.site = SiteType.CAKERESUME.name
             detail.status = StatusType.UNREAD.value
 
             if not detail:

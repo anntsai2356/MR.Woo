@@ -25,30 +25,30 @@ class JobsIntegrator:
             return job_group
 
         for job in data:
-            platform = {}
+            site = {}
 
             job_unique_key = ""
             job_unique_key = job["title"] + "_" + job["company"]
 
             # ozf has many url at the same job, so replace it, just save one of them
-            platform = {
-                "name": job["platform"],
+            site = {
+                "name": job["site"],
                 "updated_time": job["updated_time"],
                 "url": job["url"],
             }
 
             if job_unique_key in job_group:
-                job_group[job_unique_key]["platforms"][job["platform"]] = platform
+                job_group[job_unique_key]["sites"][job["site"]] = site
             else:
-                platforms = {}
+                sites = {}
                 item = {}
-                platforms[job["platform"]] = platform
+                sites[job["site"]] = site
                 item = {
                     "title": job["title"],
                     "company": job["company"],
                     "location": job["location"],
                     "status": job["status"],
-                    "platforms": platforms,
+                    "sites": sites,
                 }
                 job_group[job_unique_key] = item
 
@@ -63,12 +63,12 @@ class JobsIntegrator:
         Update history data with new data.
         """
 
-        platform = {
-            "name": to_data["platform"],
+        site = {
+            "name": to_data["site"],
             "updated_time": to_data["updated_time"],
             "url": to_data["url"],
         }
-        from_data[unique_key]["platforms"][to_data["platform"]] = platform
+        from_data[unique_key]["sites"][to_data["site"]] = site
 
     def _insertData(self, unique_key, from_data: dict, to_data: dict):
         """
@@ -79,20 +79,20 @@ class JobsIntegrator:
         Insert new data into history data.
         """
 
-        platforms = {}
+        sites = {}
         job = {}
-        platform = {
-            "name": to_data["platform"],
+        site = {
+            "name": to_data["site"],
             "updated_time": to_data["updated_time"],
             "url": to_data["url"],
         }
-        platforms[to_data["platform"]] = platform
+        sites[to_data["site"]] = site
         job = {
             "title": to_data["title"],
             "company": to_data["company"],
             "location": to_data["location"],
             "status": to_data["status"],
-            "platforms": platforms,
+            "sites": sites,
         }
         from_data[unique_key] = job
 
@@ -100,14 +100,14 @@ class JobsIntegrator:
         result: list[JobInfo] = []
 
         for data in data_group.values():
-            for platform_info in data["platforms"].values():
+            for site_info in data["sites"].values():
                 item = JobInfo()
                 item.title = data["title"]
                 item.company = data["company"]
                 item.location = data["location"]
-                item.updated_time = platform_info["updated_time"]
-                item.url = platform_info["url"]
-                item.platform = platform_info["name"]
+                item.updated_time = site_info["updated_time"]
+                item.url = site_info["url"]
+                item.site = site_info["name"]
                 item.status = data["status"]
 
                 result.append(item)
@@ -153,7 +153,7 @@ class JobsIntegrator:
 
 
 if __name__ == "__main__":
-    from jobs_request import RequestHelperHandle
+    from site_helper import SiteHelperHandle
     from site_types import SiteType
     import time
 
@@ -174,8 +174,8 @@ if __name__ == "__main__":
     integrator = JobsIntegrator()
     for site_type in sites:
         jobs: list[JobInfo] = []
-        request_helper = RequestHelperHandle.get(site_type)
-        jobs = request_helper.getJobsList()
+        request_helper = SiteHelperHandle.get(site_type)
+        jobs = request_helper.requestJobs()
 
         integrator.add(jobs)
 

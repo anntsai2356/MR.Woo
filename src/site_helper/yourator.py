@@ -60,7 +60,7 @@ class YouratorHelper(_AbstractSiteHelper):
 
             detail.updated_time = int(_mktime(_datetime.fromisoformat(detail.updated_time).timetuple()))
 
-            detail.platform = SiteType.YOURATOR.name
+            detail.site = SiteType.YOURATOR.name
             detail.status = StatusType.UNREAD.value
 
             if not detail:
