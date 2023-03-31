@@ -1,7 +1,9 @@
 from requests import Response as _Response
 from abc import ABC, abstractmethod
 from typing import TypeAlias
+import tempfile
 import json as _json
+import subprocess
 
 from job_info import JobInfo
 
@@ -14,6 +16,12 @@ class AbstractSiteHelper(ABC):
     All functions in this class may have side-effect. e.g. |requestNext()| will cause
     the DerivedHelper to change their state to fetch different job information in the next time.
     """
+
+    class _JobDetails:
+        def __init__(self) -> None:
+            self.overview = ""
+            self.responsibilities = ""
+            self.requirements = ""
 
     class _ContentParserHelper:
         @staticmethod
@@ -119,6 +127,64 @@ class AbstractSiteHelper(ABC):
 
         return result
 
+    @abstractmethod
+    def _getCachedJobDetails(self, info: JobInfo) -> _JobDetails:
+        """
+        Try to get cached job details.
+        """
+        return NotImplemented
+
+    @abstractmethod
+    def _requestJobDetails(self, info: JobInfo) -> _Response:
+        """
+        Request job details from certain.
+        """
+        return NotImplemented
+
+    @abstractmethod
+    def _doParseJobDetails(self, resp: _Response) -> _JobDetails:
+        """
+        Parse the job details response from certain site.
+        """
+        return NotImplemented
+
+    def getJobDetails(self, info: JobInfo) -> _JobDetails | None:
+        """
+        Request and browse job details via |info|.
+        """
+        jd = self._getCachedJobDetails(info)
+
+        if jd == None:
+            resp = self._requestJobDetails(info)
+            if resp.status_code != 200:
+                print(f"ERROR: get HTTP status code {resp.status_code}")
+                print(f"       from URL {resp.url}")
+                return False
+            jd = self._doParseJobDetails(resp)
+
+        return jd
+
+    def browseJobDetails(self, info: JobInfo, jd: _JobDetails) -> bool:
+        """
+        Browse job details via |info|.
+        """
+        with tempfile.NamedTemporaryFile("w+", suffix=".tmp", encoding="utf-8", newline='\n') as f:
+            f.write(f"# \033[36m{info.title}\033[0m in {info.company}\n\n")
+            if jd.overview:
+                f.write(f"## \033[36mJOB DESCRIPTION\033[0m\n\n{jd.overview}\n\n")
+            if jd.responsibilities:
+                f.write(f"## \033[36mRESPONSIBILITIES\033[0m\n\n{jd.responsibilities}\n\n")
+            if jd.requirements:
+                f.write(f"## \033[36mREQUIREMENTS\033[0m\n\n{jd.requirements}\n\n")
+            f.flush()
+
+            CMD = ["less", "-R", f.name]
+            # Move cursor to the top
+            print("\033[1024A", flush=True)
+            result = subprocess.run(CMD).returncode == 0
+            print("\033[1024A", flush=True)
+            return result
 
 
 ParserHelper: TypeAlias = AbstractSiteHelper._ContentParserHelper
+JobDetails: TypeAlias = AbstractSiteHelper._JobDetails

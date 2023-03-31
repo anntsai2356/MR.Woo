@@ -1,9 +1,8 @@
-from site_helper.base import AbstractSiteHelper as _AbstractSiteHelper, ParserHelper as _ParserHelper
-from requests import post as _requestPost, Response as _Response
+from site_helper.base import AbstractSiteHelper as _AbstractSiteHelper, ParserHelper as _ParserHelper, JobDetails as _JobDetails
+from requests import get as _requestGet, post as _requestPost, Response as _Response
 from urllib.parse import urlencode as _urlEncode
-import requests
-import json
-import re
+from bs4 import BeautifulSoup as _bs
+import re as _re
 
 from job_info import JobInfo
 from site_types import SiteType
@@ -15,10 +14,12 @@ class CakeresumeHelper(_AbstractSiteHelper):
         super().__init__()
         self._total_pages: int = 999
         self._current_page: int = 0
+        self._cached_details: _JobDetails = None
 
     def reset(self):
         self._total_pages = 999
         self._current_page = 0
+        self._cached_details = None
 
     def _doRequestJobs(self, *args) -> _Response:
         search_page_url = "https://www.cakeresume.com/jobs"
@@ -46,8 +47,7 @@ class CakeresumeHelper(_AbstractSiteHelper):
         return _requestPost(url, json=SEARCH_JSON)
 
     def _doParseJobsResponse(self, resp: _Response) -> list[JobInfo]:
-        content = _ParserHelper.convertContentToObject(
-            resp.content.decode('utf-8'))
+        content = _ParserHelper.convertContentToObject(resp.content.decode('utf-8'))
 
         if content == None:
             self._current_page = self._total_pages
@@ -80,8 +80,8 @@ class CakeresumeHelper(_AbstractSiteHelper):
             # we clip updated_time since it is in milliseconds.
             detail.updated_time = int(detail.updated_time/1000)
 
-            detail.site = SiteType.CAKERESUME.name
-            detail.status = StatusType.UNREAD.value
+            detail.site = SiteType.CAKERESUME
+            detail.status = StatusType.UNREAD
 
             if not detail:
                 print("ERROR: CakeresumeHelper::_doParseJobsResponse got invalid job info.")
@@ -122,13 +122,13 @@ class CakeresumeHelper(_AbstractSiteHelper):
 
         result = {"app_id": "", "api_key": ""}
 
-        response = requests.get(url)
+        response = _requestGet(url)
         response.encoding = "utf-8"
         decoded_content = response.content.decode(response.encoding)
 
-        match = re.search('("algolia"?):{(.+?)}', decoded_content).group()
+        match = _re.search('("algolia"?):{(.+?)}', decoded_content).group()
         match = "{" + match + "}"
-        info = json.loads(match.replace("'", '"'))
+        info = _ParserHelper.convertContentToObject(match.replace("'", '"'))
 
         if not info["algolia"]["id"] and not info["algolia"]["key_jobs_and_pages"]:
             print(f"WARN: Could not find algolia keys in {url}.")
@@ -138,3 +138,32 @@ class CakeresumeHelper(_AbstractSiteHelper):
         result["api_key"] = info["algolia"]["key_jobs_and_pages"]
 
         return result    
+    def _getCachedJobDetails(self, info: JobInfo) -> _JobDetails:
+        return self._cached_details
+
+    def _requestJobDetails(self, info: JobInfo) -> _Response:
+        HEADERS = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36",
+            "Referer": "https://www.104.com.tw/jobs/search/",
+        }
+        return _requestGet(info.url, headers=HEADERS)
+
+    def _doParseJobDetails(self, resp: _Response) -> _JobDetails:
+        sp = _bs(resp.content, "html.parser")
+
+        self._cached_details = _JobDetails()
+        job_content = sp.find("div", class_="ContentSection_contentSection__k5CRR")
+
+        while job_content:
+            job_header = job_content.find("h3", class_="ContentSection_title__Ox8_s")
+            if not job_header:
+                break
+
+            if job_header.text.strip() == "Job Description":
+                self._cached_details.overview = job_content.find("div", class_="ContentSection_content__fox_Q").getText("\n")
+            if job_header.text.strip() == "Requirements":
+                self._cached_details.requirements = job_content.find("div", class_="ContentSection_content__fox_Q").getText("\n")
+
+            job_content = job_content.find_next_sibling()
+
+        return self._cached_details
