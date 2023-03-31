@@ -25,7 +25,6 @@ class CakeresumeHelper(_AbstractSiteHelper):
         algolia = self.getCakeresumeToken(search_page_url)
 
         URL = "https://966rg9m3ek-dsn.algolia.net/1/indexes/*/queries?"
-        # TODO: handle x-algolia-api-key
         PARAMS = {
             "x-algolia-agent": "Algolia for JavaScript (4.14.2); Browser (lite); instantsearch.js (4.49.1); react (18.2.0); react-instantsearch (6.38.1); react-instantsearch-hooks (6.38.1); JS Helper (3.11.1)",
             "x-algolia-api-key": algolia["api_key"],
