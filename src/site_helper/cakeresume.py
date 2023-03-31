@@ -5,6 +5,7 @@ from urllib.parse import urlencode as _urlEncode
 from job_info import JobInfo
 from site_types import SiteType
 from status_types import StatusType
+from utils.algolia_helper import AlgoliaHelper
 
 
 class CakeresumeHelper(_AbstractSiteHelper):
@@ -18,12 +19,15 @@ class CakeresumeHelper(_AbstractSiteHelper):
         self._current_page = 0
 
     def _doRequestJobs(self, *args) -> _Response:
+        search_page_url = "https://www.cakeresume.com/jobs"
+        algolia = AlgoliaHelper.getCakeresumeToken(search_page_url)
+
         URL = "https://966rg9m3ek-dsn.algolia.net/1/indexes/*/queries?"
         # TODO: handle x-algolia-api-key
         PARAMS = {
             "x-algolia-agent": "Algolia for JavaScript (4.14.2); Browser (lite); instantsearch.js (4.49.1); react (18.2.0); react-instantsearch (6.38.1); react-instantsearch-hooks (6.38.1); JS Helper (3.11.1)",
-            "x-algolia-api-key": "ZThkNmExMWRiZjQ4ZGJlZWU4YTc1MTEyN2U2Y2ViZTUxMWM1MTdlODM4YWE2MWYzYThhZWI1NzZiM2Y5ZTI5N3ZhbGlkVW50aWw9MTY4MDYyMjk1MSZyZXN0cmljdEluZGljZXM9Sm9iJTJDSm9iX29yZGVyX2J5X2NvbnRlbnRfdXBkYXRlZF9hdCUyQ0pvYl9wbGF5Z3JvdW5kJTJDUGFnZSUyQ1BhZ2Vfb3JkZXJfYnlfY29udGVudF91cGRhdGVkX2F0JmZpbHRlcnM9YWFzbV9zdGF0ZSUzQSslMjJjcmVhdGVkJTIyK0FORCtub2luZGV4JTNBK2ZhbHNlJmhpdHNQZXJQYWdlPTEwJmF0dHJpYnV0ZXNUb1NuaXBwZXQ9JTVCJTIyZGVzY3JpcHRpb25fcGxhaW5fdGV4dCUzQTgwJTIyJTVEJmhpZ2hsaWdodFByZVRhZz0lM0NtYXJrJTNFJmhpZ2hsaWdodFBvc3RUYWc9JTNDJTJGbWFyayUzRQ==",
-            "x-algolia-application-id": "966RG9M3EK",
+            "x-algolia-api-key": algolia["api_key"],
+            "x-algolia-application-id": algolia["app_id"],
         }
         SEARCH_JSON = {
             "requests": [
