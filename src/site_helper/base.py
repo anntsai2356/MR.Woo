@@ -65,7 +65,7 @@ class AbstractSiteHelper(ABC):
         return NotImplemented
 
     @abstractmethod
-    def _doRequestJobs(self, *args) -> _Response:
+    def _doRequestJobs(self, *args, **kwargs) -> _Response:
         """
         Do fetch certain site with arguments |args| and return its response.
         """
@@ -95,7 +95,7 @@ class AbstractSiteHelper(ABC):
         """
         return False
 
-    def __requestNextJobs(self, *args, out: list[JobInfo]) -> bool:
+    def __requestNextJobs(self, *args, out: list[JobInfo], **kwargs) -> bool:
         """
         Request job's information of next page.
 
@@ -105,7 +105,7 @@ class AbstractSiteHelper(ABC):
 
         We will check http status code here.
         """
-        resp = self._doRequestJobs(*args)
+        resp = self._doRequestJobs(*args, **kwargs)
 
         if resp.status_code != 200:
             print(f"WARN: get HTTP status code {resp.status_code}")
@@ -115,14 +115,14 @@ class AbstractSiteHelper(ABC):
         out += self._doParseJobsResponse(resp)
         return self._hasRemainingJobs()
 
-    def requestJobs(self) -> list[JobInfo]:
+    def requestJobs(self, **kwargs) -> list[JobInfo]:
         """
         Request for job information.
         """
         # TODO: dynamic query keyword
         result: list[JobInfo] = []
 
-        while self.__requestNextJobs(out=result):
+        while self.__requestNextJobs(out=result, **kwargs):
             pass
 
         return result

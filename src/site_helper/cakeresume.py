@@ -1,4 +1,5 @@
 from site_helper.base import AbstractSiteHelper as _AbstractSiteHelper, ParserHelper as _ParserHelper, JobDetails as _JobDetails
+from site_param_helper import SiteParamHelperHandle
 from requests import get as _requestGet, post as _requestPost, Response as _Response
 from urllib.parse import urlencode as _urlEncode
 from bs4 import BeautifulSoup as _bs
@@ -21,23 +22,33 @@ class CakeresumeHelper(_AbstractSiteHelper):
         self._current_page = 0
         self._cached_details = None
 
-    def _doRequestJobs(self, *args) -> _Response:
+    def _doRequestJobs(self, *args, **kwargs) -> _Response:
+        """
+        kwargs: give query parameters and values
+
+        ex. keyword = 'php'
+
+        The valid parameter list is set in {Site}ParamHelper.
+        """
+
         search_page_url = "https://www.cakeresume.com/jobs"
         algolia = self.getCakeresumeToken(search_page_url)
-
         URL = "https://966rg9m3ek-dsn.algolia.net/1/indexes/*/queries?"
         PARAMS = {
             "x-algolia-agent": "Algolia for JavaScript (4.14.2); Browser (lite); instantsearch.js (4.49.1); react (18.2.0); react-instantsearch (6.38.1); react-instantsearch-hooks (6.38.1); JS Helper (3.11.1)",
             "x-algolia-api-key": algolia["api_key"],
             "x-algolia-application-id": algolia["app_id"],
         }
+
+        param_helper = SiteParamHelperHandle.get(SiteType.CAKERESUME)
+        query_string = param_helper.getQueryString(**kwargs)
         SEARCH_JSON = {
             "requests": [
                 {
                     "indexName": "Job",
                     # "params": "clickAnalytics=true&distinct=false&enablePersonalization=true&facets=%5B%22location_list%22%2C%22profession%22%2C%22job_type%22%2C%22seniority_level%22%2C%22salary_range%22%2C%22remote%22%2C%22year_of_seniority%22%2C%22number_of_management%22%2C%22page.number_of_employees%22%2C%22page.sector%22%2C%22page.tech_labels%22%2C%22lang_name%22%2C%22salary_type%22%2C%22salary_currency%22%5D&highlightPostTag=__%2Fais-highlight__&highlightPreTag=__ais-highlight__&maxValuesPerFacet=500&page=0&query=php&tagFilters=&userToken=39196",
                     # "params": "page=0&query=php&userToken=39196",
-                    "params": "query=php&userToken=39196",
+                    "params": query_string,
                 }
             ]
         }

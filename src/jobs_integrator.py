@@ -175,7 +175,7 @@ if __name__ == "__main__":
     for site_type in sites:
         jobs: list[JobInfo] = []
         request_helper = SiteHelperHandle.get(site_type)
-        jobs = request_helper.requestJobs()
+        jobs = request_helper.requestJobs(keyword = 'php')
 
         integrator.add(jobs)
 
