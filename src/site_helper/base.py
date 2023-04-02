@@ -4,6 +4,7 @@ from typing import TypeAlias
 import tempfile
 import json as _json
 import subprocess
+from urllib.parse import urlencode as _urlEncode
 
 from job_info import JobInfo
 
@@ -54,6 +55,35 @@ class AbstractSiteHelper(ABC):
                         return None
             return obj
 
+    class _ParamHelper():
+        """
+        It's a class about parameters in url query string
+
+        Should set the mapping in variable "_param_name_mapping" by itself in __init__()
+        """
+
+        def __init__(self, param_mapping: dict) -> None:
+            self._param_name_mapping = param_mapping
+
+        def _getValidParams(self, **params: dict) -> dict:
+            valid_params = {}
+            for key, value in params.items():
+                if key not in self._param_name_mapping.keys():
+                    print(f"WARN: Not valid parameters. ({key} = {value})")
+                    continue
+
+                valid_params[self._param_name_mapping[key]] = value
+
+            return valid_params
+
+        def getQuery(self, **kwargs) -> dict:
+            return self._getValidParams(**kwargs)
+
+        def getQueryString(self, **kwargs) -> str:
+            valid_params = self._getValidParams(**kwargs)
+
+            return _urlEncode(valid_params)    
+    
     def __init__(self) -> None:
         pass
 
@@ -65,7 +95,7 @@ class AbstractSiteHelper(ABC):
         return NotImplemented
 
     @abstractmethod
-    def _doRequestJobs(self, *args) -> _Response:
+    def _doRequestJobs(self, *args, **kwargs) -> _Response:
         """
         Do fetch certain site with arguments |args| and return its response.
         """
@@ -95,7 +125,7 @@ class AbstractSiteHelper(ABC):
         """
         return False
 
-    def __requestNextJobs(self, *args, out: list[JobInfo]) -> bool:
+    def __requestNextJobs(self, *args, out: list[JobInfo], **kwargs) -> bool:
         """
         Request job's information of next page.
 
@@ -105,7 +135,7 @@ class AbstractSiteHelper(ABC):
 
         We will check http status code here.
         """
-        resp = self._doRequestJobs(*args)
+        resp = self._doRequestJobs(*args, **kwargs)
 
         if resp.status_code != 200:
             print(f"WARN: get HTTP status code {resp.status_code}")
@@ -115,14 +145,14 @@ class AbstractSiteHelper(ABC):
         out += self._doParseJobsResponse(resp)
         return self._hasRemainingJobs()
 
-    def requestJobs(self) -> list[JobInfo]:
+    def requestJobs(self, **kwargs) -> list[JobInfo]:
         """
         Request for job information.
         """
         # TODO: dynamic query keyword
         result: list[JobInfo] = []
 
-        while self.__requestNextJobs(out=result):
+        while self.__requestNextJobs(out=result, **kwargs):
             pass
 
         return result
@@ -188,3 +218,4 @@ class AbstractSiteHelper(ABC):
 
 ParserHelper: TypeAlias = AbstractSiteHelper._ContentParserHelper
 JobDetails: TypeAlias = AbstractSiteHelper._JobDetails
+ParamHelper: TypeAlias = AbstractSiteHelper._ParamHelper

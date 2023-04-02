@@ -1,4 +1,9 @@
-from site_helper.base import AbstractSiteHelper as _AbstractSiteHelper, ParserHelper as _ParserHelper, JobDetails as _JobDetails
+from site_helper.base import (
+    AbstractSiteHelper as _AbstractSiteHelper,
+    ParserHelper as _ParserHelper,
+    JobDetails as _JobDetails,
+    ParamHelper as _ParamHelper,
+)
 from requests import get as _requestGet, Response as _Response
 from urllib.parse import urlencode as _urlEncode
 from math import ceil as _ceil
@@ -17,22 +22,29 @@ class YouratorHelper(_AbstractSiteHelper):
         self._total_pages: int = 999
         self._current_page: int = 1
         self._cached_details: _JobDetails = None
+        self._param_helper = _ParamHelper({
+            "keyword": "term[]",
+        })        
 
     def reset(self):
         self._total_pages = 999
         self._current_page = 1
         self._cached_details = None
 
-    def _doRequestJobs(self, *args):
+    def _doRequestJobs(self, *args, **kwargs):
+        """
+        kwargs: give query parameters and values
+
+        ex. keyword = 'php'
+
+        The valid parameter list is set in __init__() of _ParamHelper.
+        """
+
         URL = "https://www.yourator.co/api/v2/jobs?"
-        PARAMS = {
-            "category[]": "後端工程",
-            # "category[]": "全端工程", # 有多個分類的話，結果會混再一起再用更新日期排序
-            "area[]": "TPE",
-            "position[]": "full_time",
-            "sort": "recent_updated",
-            # "page": 1 # 20 per page
-        }
+
+        query = self._param_helper.getQuery(**kwargs)        
+        PARAMS = query    
+
         PARAMS["page"] = self._current_page
         url = URL + _urlEncode(PARAMS)
         return _requestGet(url)
@@ -72,7 +84,7 @@ class YouratorHelper(_AbstractSiteHelper):
         return result
 
     def _hasRemainingJobs(self) -> bool:
-        return self._current_page < self._total_pages
+        return self._current_page <= self._total_pages
 
     def _getCachedJobDetails(self, info: JobInfo) -> _JobDetails:
         return self._cached_details

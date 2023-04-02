@@ -1,5 +1,10 @@
 import re as _re
-from site_helper.base import AbstractSiteHelper as _AbstractSiteHelper, ParserHelper as _ParserHelper, JobDetails as _JobDetails
+from site_helper.base import (
+    AbstractSiteHelper as _AbstractSiteHelper,
+    ParserHelper as _ParserHelper,
+    JobDetails as _JobDetails,
+    ParamHelper as _ParamHelper,
+)
 from requests import get as _requestGet, Response as _Response
 from urllib.parse import urlencode as _urlEncode
 from time import mktime as _mktime
@@ -16,29 +21,29 @@ class OZFHelper(_AbstractSiteHelper):
         self._total_pages: int = 999
         self._current_page: int = 1
         self._cached_details: _JobDetails = None
+        self._param_helper = _ParamHelper({
+            "keyword": "keyword",
+        })        
 
     def reset(self):
         self._total_pages = 999
         self._current_page = 1
         self._cached_details = None
 
-    def _doRequestJobs(self, *args) -> _Response:
+    def _doRequestJobs(self, *args, **kwargs) -> _Response:
+        """
+        kwargs: give query parameters and values
+
+        ex. keyword = 'php'
+
+        The valid parameter list is set in __init__() of _ParamHelper.
+        """
+        
         URL = "https://www.104.com.tw/jobs/search/list?"
-        PARAMS = {
-            "ro": 0,
-            "kwop": 7,
-            "keyword": "後端工程師",
-            "expansionType": "area,spec,com,job,wf,wktm",
-            "order": 14,
-            "asc": 0,
-            "mode": "s",
-            "jobsource": "2018indexpoc",
-            "langFlag": 0,
-            "langStatus": 0,
-            "recommendJob": 1,
-            "hotJob": 1,
-            "area": "6001001000,6001002000",  # 6001001000: 台北市; 6001002000: 新北市
-        }
+
+        query = self._param_helper.getQuery(**kwargs)
+        PARAMS = query
+
         HEADERS = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36",
             "Referer": "https://www.104.com.tw/jobs/search/",

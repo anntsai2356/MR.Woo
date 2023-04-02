@@ -44,7 +44,7 @@ class JobInfo:
             [
                 self.title,
                 self.company,
-                self.company,
+                self.location,
                 self.updated_time,
                 self.url,
                 self.site.value,

@@ -23,7 +23,7 @@ def toSite(string: str):
 
 
 @command(
-    arg(OPT_KEYWORD, nargs="+", metavar="SearchKeyword",
+    arg(OPT_KEYWORD, metavar="SearchKeyword",
         help="specify the keyword for searching. [WIP]"),
     arg("-C", dest=OPT_DEST, action="store", type=Path, default=str(DEFAULT_OUTPUT),
         metavar="OutputPath",
@@ -47,7 +47,7 @@ def mrwooFetch(args):
     for site in ARG_SITES:
         print(f"requesting with keyword {ARG_KEYWORD} in |{site.name}|.")
         site_helper = SiteHelperHandle.get(site)
-        integrator.add(site_helper.requestJobs())
+        integrator.add(site_helper.requestJobs(keyword = ARG_KEYWORD))
 
     if not ARG_DEST.parent.exists():
         ARG_DEST.parent.mkdir(exist_ok=True)
