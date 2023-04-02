@@ -23,7 +23,7 @@ def toSite(string: str):
 
 
 @command(
-    arg(OPT_KEYWORD, nargs="+", metavar="SearchKeyword",
+    arg(OPT_KEYWORD, metavar="SearchKeyword",
         help="specify the keyword for searching. [WIP]"),
     arg("-C", dest=OPT_DEST, action="store", type=Path, default=str(DEFAULT_OUTPUT),
         metavar="OutputPath",
