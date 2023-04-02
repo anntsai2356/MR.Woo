@@ -1,6 +1,8 @@
-from pathlib import Path
 from datetime import datetime
 from job_info import JobInfo
+from pathlib import Path
+from site_types import SiteType
+from status_types import StatusType
 from utils.file_helper import FileHelper
 
 base_directory = Path(__file__).parents[1]
@@ -107,8 +109,8 @@ class JobsIntegrator:
                 item.location = data["location"]
                 item.updated_time = site_info["updated_time"]
                 item.url = site_info["url"]
-                item.site = site_info["name"]
-                item.status = data["status"]
+                item.site = SiteType(int(site_info["name"]))
+                item.status = StatusType(int(data["status"]))
 
                 result.append(item)
 
@@ -154,7 +156,6 @@ class JobsIntegrator:
 
 if __name__ == "__main__":
     from site_helper import SiteHelperHandle
-    from site_types import SiteType
     import time
 
     start_time = time.time()
@@ -175,7 +176,7 @@ if __name__ == "__main__":
     for site_type in sites:
         jobs: list[JobInfo] = []
         request_helper = SiteHelperHandle.get(site_type)
-        jobs = request_helper.requestJobs(keyword = 'php')
+        jobs = request_helper.requestJobs(keyword = '後端工程')
 
         integrator.add(jobs)
 

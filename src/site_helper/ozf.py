@@ -1,6 +1,10 @@
 import re as _re
-from site_helper.base import AbstractSiteHelper as _AbstractSiteHelper, ParserHelper as _ParserHelper, JobDetails as _JobDetails
-from site_param_helper import SiteParamHelperHandle
+from site_helper.base import (
+    AbstractSiteHelper as _AbstractSiteHelper,
+    ParserHelper as _ParserHelper,
+    JobDetails as _JobDetails,
+    ParamHelper as _ParamHelper,
+)
 from requests import get as _requestGet, Response as _Response
 from urllib.parse import urlencode as _urlEncode
 from time import mktime as _mktime
@@ -17,6 +21,9 @@ class OZFHelper(_AbstractSiteHelper):
         self._total_pages: int = 999
         self._current_page: int = 1
         self._cached_details: _JobDetails = None
+        self._param_helper = _ParamHelper({
+            "keyword": "keyword",
+        })        
 
     def reset(self):
         self._total_pages = 999
@@ -29,13 +36,12 @@ class OZFHelper(_AbstractSiteHelper):
 
         ex. keyword = 'php'
 
-        The valid parameter list is set in {Site}ParamHelper.
+        The valid parameter list is set in __init__() of _ParamHelper.
         """
         
         URL = "https://www.104.com.tw/jobs/search/list?"
 
-        param_helper = SiteParamHelperHandle.get(SiteType.OZF)
-        query = param_helper.getQuery(**kwargs)
+        query = self._param_helper.getQuery(**kwargs)
         PARAMS = query
 
         HEADERS = {
