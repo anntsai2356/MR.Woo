@@ -3,8 +3,7 @@ from site_helper import SiteHelperHandle
 from jobs_integrator import JobsIntegrator
 from site_types import SiteType
 from datetime import datetime
-from utils.cli import *
-
+import dcli
 
 DEFAULT_OUTPUT = Path(__file__).parent.joinpath(
     "..", "data", f'jobs_{datetime.now().strftime("%Y-%m-%d")}.csv').resolve()
@@ -22,16 +21,17 @@ def toSite(string: str):
     return string
 
 
-@command(
-    arg(OPT_KEYWORD, metavar="SearchKeyword",
-        help="specify the keyword for searching. [WIP]"),
-    arg("-C", dest=OPT_DEST, action="store", type=Path, default=str(DEFAULT_OUTPUT),
-        metavar="OutputPath",
-        help="specify the destination to output the jobs information."),
-    arg("-s", dest=OPT_SITES, type=toSite, default=None,
-        choices=SiteType.getStrList(),
-        help="specify the site to query."),
-    name="fetch", help="fetch the job information from certain sites.",
+@dcli.command(
+    "fetch",
+    dcli.arg(OPT_KEYWORD, metavar="SearchKeyword",
+             help="specify the keyword for searching. [WIP]"),
+    dcli.arg("-C", dest=OPT_DEST, action="store", type=Path, default=str(DEFAULT_OUTPUT),
+             metavar="OutputPath",
+             help="specify the destination to output the jobs information."),
+    dcli.arg("-s", dest=OPT_SITES, type=toSite, default=None,
+             choices=SiteType.getStrList(),
+             help="specify the site to query."),
+    help="fetch the job information from certain sites.",
     description="fetch the job information from certain sites."
 )
 def mrwooFetch(args):

@@ -2,19 +2,20 @@ import csv
 import tempfile
 from shutil import which
 from pathlib import Path
-from utils.cli import *
 from job_info import JobInfo
 from status_types import StatusType
 from site_helper import SiteHelperHandle
+import dcli
 
 
 OPT_TARGET = "target_file"
 
 
-@command(
-    arg(OPT_TARGET, nargs=1, metavar="TargetJobFile", type=Path,
-        help="specify the target file to browse."),
-    name="browse", help="browse the job information from the specific file.",
+@dcli.command(
+    "browse",
+    dcli.arg(OPT_TARGET, nargs=1, metavar="TargetJobFile", type=Path,
+             help="specify the target file to browse."),
+    help="browse the job information from the specific file.",
     description="browse the job information from the specific file."
 )
 def mrwooBrowse(args):

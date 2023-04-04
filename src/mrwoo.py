@@ -1,8 +1,9 @@
 import sys
-from utils.cli import *
+import dcli
 
 
-@command(
+@dcli.command(
+    "mr-woo",
     description="mrwoo is a command line tool to browse jobs in the terminal."
 )
 def mrwooMain():
@@ -14,11 +15,13 @@ from mrwoo_fetch import *
 from mrwoo_browse import *
 
 
-sys.exit(mrwooMain())
+mrwooMain.addSubCommand(mrwooFetch)
+mrwooMain.addSubCommand(mrwooBrowse)
 
-# try:
-#     sys.exit(mrwooMain())
 
-# except Exception as e:
-#     print(f"ERROR: {e}")
-#     sys.exit(1)
+try:
+    sys.exit(mrwooMain())
+
+except Exception as e:
+    print(f"ERROR: {e}")
+    sys.exit(1)
