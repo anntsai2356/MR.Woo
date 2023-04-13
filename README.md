@@ -5,7 +5,7 @@ Now, view job opportunities using CLI on the terminal!
 
 ## Why use mrwoo
 
-If you have the following conditions, recommend you try it 
+If you have the following conditions, recommend you try it. 
 
 - Tired of searching back and forth on multiple job sites.
 - The same vacancies keep popping up.
@@ -69,7 +69,7 @@ options:
 ## Usage
 ```bash
 # Job search by keyword "engineer" and export file in data folder.
-# Default file name is jobs_YYYY-MM-DD.csv
+# Default file name is jobs_YYYY-MM-DD.csv.
 mrwoo fetch engineer
 
 # View jobs one by one.
