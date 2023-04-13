@@ -3,7 +3,7 @@ import dcli
 
 
 @dcli.command(
-    "mr-woo",
+    "mrwoo",
     description="mrwoo is a command line tool to browse jobs in the terminal."
 )
 def mrwooMain():
