@@ -131,7 +131,6 @@ class JobsIntegrator:
 
         from_file = Path(from_file_path)
         if not from_file.exists():
-            FileHelper.create(from_file_path)
             FileHelper.exportData(from_file_path, self.fields, [])
             print(f"The file is not exist. create file ({from_file_path})")
 
