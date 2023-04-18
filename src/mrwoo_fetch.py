@@ -7,8 +7,6 @@ import dcli
 
 DEFAULT_OUTPUT = Path(__file__).parent.joinpath(
     "..", "data", f'jobs_{datetime.now().strftime("%Y-%m-%d")}.csv').resolve()
-DEFAULT_FROM_DEST = Path(__file__).parent.joinpath(
-    "..", "data", 'jobs.csv').resolve()
 DEFAULT_SITES = set(filter(lambda t: t != SiteType.UNSUPPORTED, SiteType))
 OPT_DEST = "out_dest"
 OPT_KEYWORD = "keyword"
@@ -61,8 +59,9 @@ def mrwooFetch(args):
 
     integrator.export(ARG_DEST)
 
-    if getattr(args, OPT_FROM_DEST):
-        ARG_FROM_DEST = Path(getattr(args, OPT_FROM_DEST))
+    from_dest = getattr(args, OPT_FROM_DEST)
+    if from_dest:
+        ARG_FROM_DEST = Path(from_dest)
         integrator.upsert(ARG_FROM_DEST, ARG_DEST)
         integrator.export(ARG_FROM_DEST)
         print(f"combined data to file ({ARG_FROM_DEST}).")
