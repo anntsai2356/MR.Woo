@@ -11,6 +11,7 @@ DEFAULT_SITES = set(filter(lambda t: t != SiteType.UNSUPPORTED, SiteType))
 OPT_DEST = "out_dest"
 OPT_KEYWORD = "keyword"
 OPT_SITES = "opt_sites"
+OPT_FROM_DEST = "from_dest"
 
 
 OPT_FROM_SITES = set([])
@@ -31,6 +32,10 @@ def toSite(string: str):
     dcli.arg("-s", dest=OPT_SITES, type=toSite, default=None,
              choices=SiteType.getStrList(),
              help="specify the site to query."),
+    dcli.arg("-f", dest=OPT_FROM_DEST, action="store", type=str, default=None,
+             required=False,
+             metavar="CombineFromPath",
+             help="specify the destination to combine the fresh and history jobs information."),             
     help="fetch the job information from certain sites.",
     description="fetch the job information from certain sites."
 )
@@ -53,4 +58,12 @@ def mrwooFetch(args):
         ARG_DEST.parent.mkdir(exist_ok=True)
 
     integrator.export(ARG_DEST)
+
+    from_dest = getattr(args, OPT_FROM_DEST)
+    if from_dest:
+        ARG_FROM_DEST = Path(from_dest)
+        integrator.upsert(ARG_FROM_DEST, ARG_DEST)
+        integrator.export(ARG_FROM_DEST)
+        print(f"combined data to file ({ARG_FROM_DEST}).")
+
     return 0
