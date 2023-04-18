@@ -65,5 +65,6 @@ def mrwooFetch(args):
         ARG_FROM_DEST = Path(getattr(args, OPT_FROM_DEST))
         integrator.upsert(ARG_FROM_DEST, ARG_DEST)
         integrator.export(ARG_FROM_DEST)
+        print(f"combined data to file ({ARG_FROM_DEST}).")
 
     return 0

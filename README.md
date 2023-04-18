@@ -67,6 +67,8 @@ options:
 ```
 
 ## Usage
+
+### Basic
 ```bash
 # Job search by keyword "engineer" and export file in data folder.
 # Default file name is jobs_YYYY-MM-DD.csv.
@@ -74,4 +76,15 @@ mrwoo fetch engineer
 
 # View jobs one by one.
 mrwoo browse data/jobs_YYYY-MM-DD.csv
+```
+
+### Advanced
+```bash
+# Job search by keyword "engineer" and "php" to specific file path.
+# Then combine jobs to specific destination.
+mrwoo fetch engineer -C data/engineer.csv -f data/jobs.csv
+mrwoo fetch php -C data/php.csv -f data/jobs.csv
+
+# View jobs one by one.
+mrwoo browse data/jobs.csv
 ```
