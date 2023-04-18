@@ -136,7 +136,7 @@ class JobsIntegrator:
             print(f"The file is not exist. create file ({from_file_path})")
 
         to_data = FileHelper.importDictData(to_file_path, self.fields)
-        assert to_data != [], "WARN: Nothing to upsert. to_file_path has no any data."
+        assert to_data != [], "WARN: nothing to upsert. to_file_path has no any data."
 
         from_data = FileHelper.importDictData(from_file_path, self.fields)
 
