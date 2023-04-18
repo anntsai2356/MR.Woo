@@ -213,10 +213,8 @@ class AbstractSiteHelper(ABC):
             f.flush()
 
             CMD = ["less", "-R", f.name]
-            # Move cursor to the top
-            print("\033[1024A", flush=True)
             result = subprocess.run(CMD).returncode == 0
-            print("\033[1024A", flush=True)
+
             return result
 
 
