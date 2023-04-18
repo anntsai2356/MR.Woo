@@ -48,8 +48,9 @@ def mrwooBrowse(args):
                 site_helper = SiteHelperHandle.get(info.site)
 
                 try:
+                    print(f"{job_cnt}. [{info.status.name}] {info.title} | {info.company} | {info.url}")
+
                     while True:
-                        print(f"{job_cnt}. [{info.status.name}] {info.title} | {info.company} | {info.url}")
                         user_input = input("keep [U]nread / [Y]es to like / [N]o to dislike / [D]etails\n").lower()
                         if user_input == 'u':
                             info.status = StatusType.UNREAD
