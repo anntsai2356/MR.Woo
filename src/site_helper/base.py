@@ -69,7 +69,7 @@ class AbstractSiteHelper(ABC):
             valid_params = {}
             for key, value in params.items():
                 if key not in self._param_name_mapping.keys():
-                    print(f"WARN: Not valid parameters. ({key} = {value})")
+                    print(f"WARN: not valid parameters. ({key} = {value})")
                     continue
 
                 valid_params[self._param_name_mapping[key]] = value
@@ -137,6 +137,10 @@ class AbstractSiteHelper(ABC):
         """
         resp = self._doRequestJobs(*args, **kwargs)
 
+        if resp == False:
+            print(f"WARN: failed to request job")
+            return self._onRequestJobsFailed(resp)
+             
         if resp.status_code != 200:
             print(f"WARN: get HTTP status code {resp.status_code}")
             print(f"      from URL {resp.url}")

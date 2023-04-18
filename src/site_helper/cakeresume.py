@@ -23,13 +23,14 @@ class CakeresumeHelper(_AbstractSiteHelper):
         self._param_helper = _ParamHelper({
             "keyword": "query",
         })
+        self.algolia_token = self._getAlgoliaToken("https://www.cakeresume.com/jobs")
 
     def reset(self):
         self._total_pages = 999
         self._current_page = 0
         self._cached_details = None
 
-    def _doRequestJobs(self, *args, **kwargs) -> _Response:
+    def _doRequestJobs(self, *args, **kwargs) -> _Response | bool:
         """
         kwargs: give query parameters and values
 
@@ -37,14 +38,14 @@ class CakeresumeHelper(_AbstractSiteHelper):
 
         The valid parameter list is set in __init__() of _ParamHelper.
         """
+        if self.algolia_token == {}:
+            return False
 
-        search_page_url = "https://www.cakeresume.com/jobs"
-        algolia = self.getCakeresumeToken(search_page_url)
         URL = "https://966rg9m3ek-dsn.algolia.net/1/indexes/*/queries?"
         PARAMS = {
             "x-algolia-agent": "Algolia for JavaScript (4.14.2); Browser (lite); instantsearch.js (4.49.1); react (18.2.0); react-instantsearch (6.38.1); react-instantsearch-hooks (6.38.1); JS Helper (3.11.1)",
-            "x-algolia-api-key": algolia["api_key"],
-            "x-algolia-application-id": algolia["app_id"],
+            "x-algolia-api-key": self.algolia_token["api_key"],
+            "x-algolia-application-id": self.algolia_token["app_id"],
         }
 
         query_string = self._param_helper.getQueryString(**kwargs)
@@ -107,7 +108,7 @@ class CakeresumeHelper(_AbstractSiteHelper):
     def _hasRemainingJobs(self) -> bool:
         return self._current_page < self._total_pages
 
-    def getCakeresumeToken(self, url: str) -> dict:
+    def _getAlgoliaToken(self, url: str) -> dict:
         """
         url : The url is page that use search box.
 
@@ -135,7 +136,7 @@ class CakeresumeHelper(_AbstractSiteHelper):
         }
         """
 
-        result = {"app_id": "", "api_key": ""}
+        result = {}
 
         response = _requestGet(url)
         response.encoding = "utf-8"
@@ -146,7 +147,7 @@ class CakeresumeHelper(_AbstractSiteHelper):
         info = _ParserHelper.convertContentToObject(match.replace("'", '"'))
 
         if not info["algolia"]["id"] and not info["algolia"]["key_jobs_and_pages"]:
-            print(f"WARN: Could not find algolia keys in {url}.")
+            print(f"WARN: can't find algolia keys in {url}.")
             return result
 
         result["app_id"] = info["algolia"]["id"]
